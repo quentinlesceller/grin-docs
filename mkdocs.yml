@@ -1,0 +1,56 @@
+# Project information
+site_name: Grin Documentation
+site_url: https://docs.grin.mw
+site_author: Grin Developers
+site_description: >-
+  Create a branded static site from a set of Markdown files to host the
+  documentation of your Open Source or commercial project – customizable,
+  searchable, mobile-friendly, 40+ languages
+
+# Repository
+repo_name: mimblewimble/grin
+repo_url: https://github.com/mimblewimble/grin
+
+# Copyright
+copyright: Copyright &copy; 2016 - 2020 Grin Developers
+
+theme:
+  palette:
+    scheme: preference
+  name: material
+  logo: assets/images/grin-logo.svg
+  language: en
+  features:
+    - tabs
+
+# Plugins
+plugins:
+  - search
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/mimblewimble/grin
+    - icon: fontawesome/brands/keybase
+      link: https://keybase.io/team/grincoin
+
+nav:
+  - Home: index.md
+  - Getting started: getting-started.md
+  - Exchange Integrations:
+    - Intro: integrations/intro.md
+  - Technical Details:
+    - Table of Contents: technical/toc.md
+    - Technical Introduction: technical/technical-introduction.md
+    - Grin4Bitcoiners: technical/grin4bitcoiners.md
+    - Blocks and Headers: technical/blocks-and-headers.md
+    - Chain Sync: technical/chain-sync.md
+    - Coinbase Maturity: technical/coinbase-maturity.md
+    - Contract Ideas: technical/contract-ideas.md
+    - Dandelion: technnical/dandelion.md
+    - Merkle Structures: technical/merkle-structures.md
+    - Merkle Proof: technical/merkle-proof.md
+    - Switch Commitments: technical/switch-commitments.md
+    - Pruning: technical/pruning.md
+    - Rangeproof: technical/rangeproof.md
+
