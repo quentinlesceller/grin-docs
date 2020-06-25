@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
+     <loc>https://docs.grin.mw/</loc>
+     <lastmod>2020-06-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://docs.grin.mw/getting-started/</loc>
+     <lastmod>2020-06-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://docs.grin.mw/integrations/intro/</loc>
+     <lastmod>2020-06-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://docs.grin.mw/technical/toc/</loc>
+     <lastmod>2020-06-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://docs.grin.mw/technical/technical-introduction/</loc>
+     <lastmod>2020-06-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://docs.grin.mw/technical/grin4bitcoiners/</loc>
+     <lastmod>2020-06-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://docs.grin.mw/technical/blocks-and-headers/</loc>
+     <lastmod>2020-06-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://docs.grin.mw/technical/switch-commitments/</loc>
+     <lastmod>2020-06-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+</urlset>
