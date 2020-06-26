@@ -49,6 +49,7 @@ nav:
     - Grin for Bitcoiners: technical/grin-for-bitcoiners.md
     - Building Blocks:
       - Merkle Mountain Ranges (MMRs): technical/building-blocks/merkle-mountain-ranges.md
+      - Merkle Proof: technical/building-blocks/merkle-proof.md
       - Switch Commitments: technical/building-blocks/switch-commitments.md
     - Blockchain and Consensus:
       - Coinbase Maturity Rule: technical/blockchain-and-consensus/coinbase-maturity-rule.md

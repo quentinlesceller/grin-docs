@@ -9,20 +9,21 @@ This part of the documentation, explain more in details the technology behind Gr
 ## Introduction
 
 - [Introduction to Mimblewimble](introduction-to-mimblewimble.md) - A technical introduction to Mimblewimble
-- [Grin For Bitcoiners](grin4bitcoiners.md) - Explaining Grin from a Bitcoiner's perspective
+- [Grin For Bitcoiners](grin-for-bitcoiners.md) - Explaining Grin from a Bitcoiner's perspective
 
 ## Building Blocks
 
 This part covers *some* of the building blocks used in Grin.
 
 - [Merkle Mountain Ranges](building-blocks/merkle-mountain-ranges.md) - Explain what are Merkle Mountain Ranges (MMRs)
+- [Merkle Proof](building-blocks/merkle-proof.md) - Explain what are Merkle Proof
 - [Switch Commitments](building-blocks/switch-commitments.md) - An introduction to Switch Commitments
 
 ## Blockchain and Consensus
 
 This parts details several mechanisms and structures used by Grin.
 
-- [Coinbase Maturity Rule](coinbase.md) -  Explain the Coinbase maturity rule
+- [Coinbase Maturity Rule](blockchain-and-consensus/coinbase-maturity-rule.md) -  Explain the Coinbase maturity rule
 - [Fast Sync](blockchain-and-consensus/fast-sync.md) - Explain the fast sync process
 - [Proof-of-Work](blockchain-and-consensus/proof-of-work.md) - An introduction to Cuckoo Cycle: Grin's Proof-of-Work
 - [Pruning Blockchain Data](blockchain-and-consensus/pruning-blockchain-data.md) - Validation of a pruned MW blockchain

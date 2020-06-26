@@ -34,7 +34,6 @@ When the game is finished, Alice simply needs to publish her secret number `29` 
 blinding factor `r` and Bob can calculate the hash himself and easily verify that Alice
 did not change the secret number during the game.
 
-
 ### Pedersen Commitment
 
 Other, more advanced commitment schemes can have additional properties. For example Mimblewimble
@@ -48,11 +47,10 @@ get a single box as result (which still is locked), and if you open this single 
 from _box1_ and _box2_.
 
 While this "box" metaphor no longer seems to be reasonable in the real-world this
-is perfectly possible using the properties of operations on elliptic curves.   
+is perfectly possible using the properties of operations on elliptic curves.
 
-Look into [Introduction to Mimblewimble](intro.md) for further details on Pedersen Commitments
+Look into [Introduction to Mimblewimble](../introduction-to-mimblewimble.md) for further details on Pedersen Commitments
 and how they are used in Grin.
-
 
 ## Properties of commitment schemes:
 
@@ -85,8 +83,6 @@ resources are bound in the real world).
 "_Perfectly_" binding or hiding means that even with infinite computing power
 it would be impossible to break the property (bindingness/hidingness).
 
-
-
 ### Mutual exclusivity:
 
 It is important to realize that it's **impossible** that any commitment scheme can be
@@ -111,7 +107,6 @@ properties (_hidingness_ and _bindingness_) with _perfect_ security. If one is _
 secure then the other can be at most _computationally_ secure
 (and the other way around).
 
-
 ### Considerations for cryptocurrencies
 
 Which roles do these properties play in the design of cryptocurrencies?
@@ -134,7 +129,6 @@ never be violated.
 Even with the intent being that both of these properties will hold for the lifetime
 of a cryptocurrency, still a choice has to be made about which commitment scheme to use.
 
-
 #### A hard choice?
 
 Which one of these two properties needs to be _perfectly_ safe
@@ -145,7 +139,6 @@ Economical soundness (no hidden inflation possible) or ensured privacy (privacy 
 be preserved)?
 
 This seems like a hard to choice to make.
-
 
 If we look closer into this we realize that the commitment scheme only needs to be
 _perfectly_ binding at the point in time when the scheme actually gets broken. Until
@@ -158,7 +151,6 @@ property must be ensured at all times. Otherwise, in the unfortunate case should
 commitment scheme be broken, an attacker could go back in the chain and unblind
 past transactions, thus break the privacy property retroactively.
 
-
 ## Properties of Pedersen Commitments
 
 Pedersen Commitments are **computationally binding** and **perfectly hiding** as for a given
@@ -166,7 +158,6 @@ commitment to the value `v`: `v*H + r*G` there may exist a pair of different val
 and `v1` such that the sum will be the same. Even if you have infinite computing power
 and could try all possible values, you would not be able to tell which one is the original one
 (thus _perfectly hiding_).
-
 
 ## Introducing Switch Commitments
 
@@ -186,7 +177,6 @@ solution. These type of commitments allow changing the properties of the commitm
 by changing the revealing / validating procedure without changing the way commitments
 are created. (You "_switch_" to a new validation scheme which is backwards
 compatible with commitments created long before the actual "_switch_").
-
 
 ### How does this work in detail
 
@@ -238,12 +228,10 @@ This neat idea lead to the removal of the switch commitment hash from the output
 (and following) [pull requests](https://github.com/mimblewimble/grin/issues/998) as now it
 could be easily included into the Pedersen Commitments.
 
-
 This is how it is currently implemented in Grin. Pedersen commitments are
 used for the Confidential Transaction but instead of choosing the blinding factor `r`
 only by random, it is calculated by adding the hash of an ElGamal commitment to a random `r'`
 (see here in [main_impl.h#L267](https://github.com/mimblewimble/secp256k1-zkp/blob/73617d0fcc4f51896cce4f9a1a6977a6958297f8/src/modules/commitment/main_impl.h#L267)).
-
 
 In general switch commitments were first described in the paper
 ["Switch Commitments: A Safety Switch for Confidential Transactions"](https://eprint.iacr.org/2017/237.pdf)).
@@ -251,8 +239,6 @@ The **"switch"** in the name comes from the fact that you can virtually flip a "
 the future and simply by changing the validation procedure you can change the strength of
 the bindingness and hidingness property of your commitments and this even works in a
 backwards compatible way with commitments created today.
-
-
 
 ## Conclusion
 

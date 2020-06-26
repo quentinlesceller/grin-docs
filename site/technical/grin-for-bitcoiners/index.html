@@ -515,6 +515,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../building-blocks/merkle-proof/" title="Merkle Proof" class="md-nav__link">
+      Merkle Proof
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../building-blocks/switch-commitments/" title="Switch Commitments" class="md-nav__link">
       Switch Commitments
     </a>
@@ -839,11 +851,11 @@
 <p>No, and this is where Mimblewimble and Grin shine. Confidential transactions are a form of <a href="https://en.wikipedia.org/wiki/Homomorphic_encryption">homomorphic encryption</a>. Without revealing any amount, Grin can verify that the sum of all transaction inputs equal the sum of transaction outputs, plus the fee. Going even further, comparing the sum of all money created by mining with the total sum of money that's being held, Grin nodes can check the correctness of the total money supply.</p>
 <h3 id="if-i-listen-to-transaction-relay-cant-i-just-figure-out-who-they-belong-to-before-being-cut-through">If I listen to transaction relay, can't I just figure out who they belong to before being cut-through?</h3>
 <p>You can figure out which outputs are being spent by which transaction, but the trail of data stops here. All inputs and outputs look like random pieces of data, so you can't tell if the money was transferred, still belongs to the same person, which output is the actual transfer and which is the change, etc. Grin transactions are built with <em>no identifiable piece of information</em>.</p>
-<p>In addition, Grin leverages <a href="dandelion/dandelion.md">Dandelion relay</a>, which provides additional anonymity as to which IP or client the transaction originated from, and allows for transactions to be aggregated.</p>
+<p>In addition, Grin leverages <a href="../miscellaneous/dandelion/">Dandelion relay</a>, which provides additional anonymity as to which IP or client the transaction originated from, and allows for transactions to be aggregated.</p>
 <h3 id="what-about-the-quantum-computaggedon">What about the quantum computaggedon?</h3>
 <p>In every Grin output, we also include a bit of hashed data, which is quantum safe. If quantum computing was to become a reality, we can safely introduce additional verification that would protect existing coins from being hacked.</p>
 <h3 id="how-does-all-this-magic-work">How does all this magic work?</h3>
-<p>See our <a href="intro.md">technical introduction</a> to get started.</p>
+<p>See our <a href="../introduction-to-mimblewimble/">technical introduction</a> to get started.</p>
                 
               
               
