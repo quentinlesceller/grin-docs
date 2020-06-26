@@ -1,4 +1,4 @@
-# Technical Introductionn to Mimblewimble
+# Technical Introduction to Mimblewimble
 
 ## Tongue Tying for Everyone
 

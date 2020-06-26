@@ -1,7 +1,5 @@
 # Introduction to Switch Commitments
 
-*Read this in other languages: [简体中文](switch_commitment_ZH-CN.md).*
-
 ## General introduction
 
 In cryptography a _Commitment_ (or _commitment scheme_) refers to a concept which can be imagined
@@ -17,7 +15,6 @@ They can unlock the box, compare the secret within the box with the secret you j
 and can be sure that you didn't change your secret since you locked it. You "**committed**"
 to the secret number beforehand, meaning you cannot change it between the time of
 commitment and the time of revealing.
-
 
 ## Examples
 
