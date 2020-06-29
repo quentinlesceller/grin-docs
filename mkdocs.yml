@@ -3,37 +3,21 @@ site_name: Grin Documentation
 site_url: https://docs.grin.mw
 site_author: Grin Developers
 site_description: >-
-  Create a branded static site from a set of Markdown files to host the
-  documentation of your Open Source or commercial project – customizable,
-  searchable, mobile-friendly, 40+ languages
+  Official Grin and Grin-Wallet documentation
 
 # Repository
-repo_name: mimblewimble/grin
-repo_url: https://github.com/mimblewimble/grin
-edit_uri: ../docs/edit/master/docs/
+repo_name: mimblewimble/docs
+repo_url: https://github.com/mimblewimble/docs
 
 # Copyright
 copyright: Copyright &copy; 2016 - 2020 Grin Developers
 
 theme:
-  palette:
-    scheme: preference
   name: readthedocs
-  logo: assets/images/grin-logo.svg
-  language: en
-  features:
-    - tabs
-
-# Plugins
-plugins:
-  - search
-
-extra:
-  social:
-    - icon: fontawesome/brands/github-alt
-      link: https://github.com/mimblewimble/grin
-    - icon: fontawesome/brands/keybase
-      link: https://keybase.io/team/grincoin
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - rust
 
 markdown_extensions:
   - admonition
