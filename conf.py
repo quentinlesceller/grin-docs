@@ -68,6 +68,15 @@ html_theme = 'sphinx_rtd_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+html_css_files = ["css/toggle.css"]
+
+html_js_files = ["js/toggle.js"]
+
+# Add any extra paths that contain custom files (such as robots.txt or
+# .htaccess) here, relative to this directory. These files are copied
+# directly to the root of the documentation.
+html_extra_path = ["_static/css"]
+
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
 #
@@ -83,12 +92,6 @@ html_theme_options = {
     'logo_only': True,
     'display_version': False,
 }
-
-html_css_files = ["css/toggle.css"]
-
-html_js_files = ["js/toggle.js"]
-
-
 
 # -- Options for HTMLHelp output ---------------------------------------------
 
