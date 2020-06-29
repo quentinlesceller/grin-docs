@@ -1,6 +1,3 @@
-from django.utils import timezone
-
-
 # -- Project information -----------------------------------------------------
 
 project = u'Grin'
