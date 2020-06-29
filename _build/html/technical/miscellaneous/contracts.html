@@ -1,0 +1,540 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Contracts &mdash; Grin v4.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/toggle.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/js/toggle.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Grin
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Integration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../integration/index.html">Integration</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Technical Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../table-of-contents.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction-to-mimblewimble.html">Technical Introduction to Mimblewimble</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grin-for-bitcoiners.html">Grin for Bitcoiners</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Building Blocks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../building-blocks/merkle-mountain-ranges.html">Merkle Mountain Ranges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building-blocks/merkle-proof.html">Merkle Proof</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building-blocks/switch-commitments.html">Introduction to Switch Commitments</a></li>
+</ul>
+
+            
+          
+    <a href="genindex.html">Keyword Index</a>
+  
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Grin</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Contracts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/technical/miscellaneous/contracts.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="contracts">
+<h1>Contracts<a class="headerlink" href="#contracts" title="Permalink to this headline">¶</a></h1>
+<p>This document describes smart contracts that can be setup using Grin
+even though the Grin chain does not support scripting. All these
+contracts rely on a few basic features that are built in the chain and
+compose them in increasingly clever ways.</p>
+<p>None of those constructs are fully original or invented by the authors
+of this document or the Grin development team. Most of the credit should
+be attributed to a long list of cryptographers and researchers. To name
+just a few: Torben Pryds Pedersen, Gregory Maxwell, Andrew Poelstra,
+John Tromp, Claus Peter Schnorr. We apologize in advance for all those
+we couldn’t name and recognize that most computer science discoveries
+are incremental.</p>
+<div class="section" id="built-ins">
+<h2>Built-Ins<a class="headerlink" href="#built-ins" title="Permalink to this headline">¶</a></h2>
+<p>This section is meant as a reminder of some crucial features of the Grin
+chain. We assume some prior reading as to how these are constructed and
+used.</p>
+<div class="section" id="pedersen-commitments">
+<h3>Pedersen Commitments<a class="headerlink" href="#pedersen-commitments" title="Permalink to this headline">¶</a></h3>
+<p>All outputs include a Pedersen commitment of the form <code class="docutils literal notranslate"><span class="pre">r*G</span> <span class="pre">+</span> <span class="pre">v*H</span></code> with
+<code class="docutils literal notranslate"><span class="pre">r</span></code> the blinding factor, <code class="docutils literal notranslate"><span class="pre">v</span></code> the value, and G and H two distinct
+generator points on the same curve group.</p>
+</div>
+<div class="section" id="aggregate-signatures-a-k-a-schnorr-musig">
+<h3>Aggregate Signatures (a.k.a. Schnorr, MuSig)<a class="headerlink" href="#aggregate-signatures-a-k-a-schnorr-musig" title="Permalink to this headline">¶</a></h3>
+<p>We suppose we have the SHA256 hash function and the same G curve as
+above. In its simplest form, an aggregate signature is built from:</p>
+<ul class="simple">
+<li><p>the message <code class="docutils literal notranslate"><span class="pre">M</span></code> to sign, in our case the transaction fee</p></li>
+<li><p>a private key <code class="docutils literal notranslate"><span class="pre">x</span></code>, with its matching public key <code class="docutils literal notranslate"><span class="pre">x*G</span></code></p></li>
+<li><p>a nonce <code class="docutils literal notranslate"><span class="pre">k</span></code> just used for the purpose of building the signature</p></li>
+</ul>
+<p>We build the challenge <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">=</span> <span class="pre">SHA256(M</span> <span class="pre">|</span> <span class="pre">k*G</span> <span class="pre">|</span> <span class="pre">x*G)</span></code>, and the scalar
+<code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">k</span> <span class="pre">+</span> <span class="pre">e</span> <span class="pre">*</span> <span class="pre">x</span></code>. The full aggregate signature is then the pair
+<code class="docutils literal notranslate"><span class="pre">(s,</span> <span class="pre">k*G)</span></code>.</p>
+<p>The signature can be checked using the public key <code class="docutils literal notranslate"><span class="pre">x*G</span></code>,
+re-calculating <code class="docutils literal notranslate"><span class="pre">e</span></code> using M and <code class="docutils literal notranslate"><span class="pre">k*G</span></code> from the 2nd part of the
+signature pair and by verifying that <code class="docutils literal notranslate"><span class="pre">s</span></code>, the first part of the
+signature pair, satisfies:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">*</span><span class="n">G</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="n">G</span> <span class="o">+</span> <span class="n">e</span> <span class="o">*</span> <span class="n">x</span><span class="o">*</span><span class="n">G</span>
+</pre></div>
+</div>
+<p>In this simple case of someone sending a transaction to a receiver they
+trust (see later for the trustless case), an aggregate signature can be
+directly built for a Grin transaction by taking the above private key
+<code class="docutils literal notranslate"><span class="pre">x</span></code> to be the sum of output blinding factors minus the sum of input
+blinding factors. The resulting kernel is assembled from the aggregate
+signature generated using <code class="docutils literal notranslate"><span class="pre">r</span></code> and the public key <code class="docutils literal notranslate"><span class="pre">r*G</span></code>, and allows
+to verify non-inflation for all Grin transactions (and signs the fees).</p>
+<p>Because these signatures are built simply from a scalar and a public
+key, they can be used to construct a variety of contracts using “simple”
+arithmetic.</p>
+</div>
+<div class="section" id="absolute-timelocked-transactions">
+<h3>(Absolute) Timelocked Transactions<a class="headerlink" href="#absolute-timelocked-transactions" title="Permalink to this headline">¶</a></h3>
+<p>Analogous to Bitcoin
+<a class="reference external" href="https://en.bitcoin.it/wiki/Timelock#nLockTime">nLockTime</a>.</p>
+<p>A transaction can be time-locked with a few simple modifications:</p>
+<ul class="simple">
+<li><p>the message <code class="docutils literal notranslate"><span class="pre">M</span></code> to sign becomes the lock_height <code class="docutils literal notranslate"><span class="pre">h</span></code> at which the
+transaction becomes spendable appended to the fee</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">M</span> <span class="pre">=</span> <span class="pre">fee</span> <span class="pre">|</span> <span class="pre">h</span></code></p></li>
+</ul>
+</li>
+<li><p>the lock height <code class="docutils literal notranslate"><span class="pre">h</span></code> is included in the transaction kernel</p></li>
+<li><p>a block with a kernel that includes a lock height greater than the
+current block height is rejected</p></li>
+</ul>
+</div>
+<div class="section" id="relative-timelocked-transactions">
+<h3>(Relative) Timelocked Transactions<a class="headerlink" href="#relative-timelocked-transactions" title="Permalink to this headline">¶</a></h3>
+<p>We can extend the concept of an absolute locktime on a tx by including a
+(kernel) commitment that we can define the lock_height relative to.</p>
+<p>The lock_height would be relative to the block height where the
+referenced kernel was first included in the chain state.</p>
+<p>Tx2 can then be restricted such that it would only be valid to include
+it in a block once <code class="docutils literal notranslate"><span class="pre">h</span></code> blocks have passed after first seeing Tx1 (via
+the referenced kernel commitment).</p>
+<ul class="simple">
+<li><p>the message <code class="docutils literal notranslate"><span class="pre">M</span></code> to sign would need to include the following -</p>
+<ul>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">fee</span></code> as before</p></li>
+<li><p>the lock_height <code class="docutils literal notranslate"><span class="pre">h</span></code> (as before but interpreted as a relative
+value)</p></li>
+<li><p>a referenced kernel commitment <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p>M = <code class="docutils literal notranslate"><span class="pre">fee</span> <span class="pre">|</span> <span class="pre">h</span> <span class="pre">|</span> <span class="pre">C</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>For Tx2 to be accepted it would also need to include a Merkle proof
+identifying the block including <code class="docutils literal notranslate"><span class="pre">C</span></code> from Tx1. This proves the relative
+lock_height requirement has been met.</p>
+</div>
+</div>
+<div class="section" id="derived-contracts">
+<h2>Derived Contracts<a class="headerlink" href="#derived-contracts" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="trustless-transactions">
+<h3>Trustless Transactions<a class="headerlink" href="#trustless-transactions" title="Permalink to this headline">¶</a></h3>
+<p>An aggregate (Schnorr) signature involving a single party is relatively
+simple but does not demonstrate the full flexibility of the
+construction. We show here how to generalize it for use in outputs
+involving multiple parties.</p>
+<p>As constructed in section 1.2, an aggregate signature requires trusting
+the receiving party. As Grin outputs are completely obscured by Pedersen
+Commitments, one cannot prove money was actually sent to the right
+party, hence a receiver could claim not having received anything. To
+solve this issue, we require the receiver to collaborate with the sender
+in building a transaction and specifically its kernel signature.</p>
+<p>Alice wants to pay Bob in grins. She starts the transaction building
+process:</p>
+<ol class="arabic simple">
+<li><p>Alice selects her inputs and builds her change output. The sum of all
+blinding factors (change output minus inputs) is <code class="docutils literal notranslate"><span class="pre">rs</span></code>.</p></li>
+<li><p>Alice picks a random nonce ks and sends her partial transaction,
+<code class="docutils literal notranslate"><span class="pre">ks*G</span></code> and <code class="docutils literal notranslate"><span class="pre">rs*G</span></code> to Bob.</p></li>
+<li><p>Bob picks his own random nonce <code class="docutils literal notranslate"><span class="pre">kr</span></code> and the blinding factor for his
+output <code class="docutils literal notranslate"><span class="pre">rr</span></code>. Using <code class="docutils literal notranslate"><span class="pre">rr</span></code>, Bob adds his output to the transaction.</p></li>
+<li><p>Bob computes the message <code class="docutils literal notranslate"><span class="pre">M</span> <span class="pre">=</span> <span class="pre">fee</span> <span class="pre">|</span> <span class="pre">lock_height</span></code>, the Schnorr
+challenge <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">=</span> <span class="pre">SHA256(M</span> <span class="pre">|</span> <span class="pre">kr*G</span> <span class="pre">+</span> <span class="pre">ks*G</span> <span class="pre">|</span> <span class="pre">rr*G</span> <span class="pre">+</span> <span class="pre">rs*G)</span></code> and finally
+his side of the signature <code class="docutils literal notranslate"><span class="pre">sr</span> <span class="pre">=</span> <span class="pre">kr</span> <span class="pre">+</span> <span class="pre">e</span> <span class="pre">*</span> <span class="pre">rr</span></code>.</p></li>
+<li><p>Bob sends <code class="docutils literal notranslate"><span class="pre">sr</span></code>, <code class="docutils literal notranslate"><span class="pre">kr*G</span></code> and <code class="docutils literal notranslate"><span class="pre">rr*G</span></code> to Alice.</p></li>
+<li><p>Alice computes <code class="docutils literal notranslate"><span class="pre">e</span></code> just like Bob did and can check that
+<code class="docutils literal notranslate"><span class="pre">sr*G</span> <span class="pre">=</span> <span class="pre">kr*G</span> <span class="pre">+</span> <span class="pre">e*rr*G</span></code>.</p></li>
+<li><p>Alice sends her side of the signature <code class="docutils literal notranslate"><span class="pre">ss</span> <span class="pre">=</span> <span class="pre">ks</span> <span class="pre">+</span> <span class="pre">e</span> <span class="pre">*</span> <span class="pre">rs</span></code> to Bob.</p></li>
+<li><p>Bob validates <code class="docutils literal notranslate"><span class="pre">ss*G</span></code> just like Alice did for <code class="docutils literal notranslate"><span class="pre">sr*G</span></code> in step 6 and
+can produce the final signature <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">(ss</span> <span class="pre">+</span> <span class="pre">sr,</span> <span class="pre">ks*G</span> <span class="pre">+</span> <span class="pre">kr*G)</span></code> as
+well as the final transaction kernel including <code class="docutils literal notranslate"><span class="pre">s</span></code> and the public
+key <code class="docutils literal notranslate"><span class="pre">rr*G</span> <span class="pre">+</span> <span class="pre">rs*G</span></code>.</p></li>
+</ol>
+<p>This protocol requires 3 data exchanges (Alice to Bob, Bob back to
+Alice, and finally Alice to Bob) and is therefore said to be
+interactive. However the interaction can be done over any medium and in
+any period of time, including the pony express over 2 weeks.</p>
+<p>This protocol can also be generalized to any number <code class="docutils literal notranslate"><span class="pre">i</span></code> of parties. On
+the first round, all the <code class="docutils literal notranslate"><span class="pre">ki*G</span></code> and <code class="docutils literal notranslate"><span class="pre">ri*G</span></code> are shared. On the 2nd
+round, everyone can compute <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">=</span> <span class="pre">SHA256(M</span> <span class="pre">|</span> <span class="pre">sum(ki*G)</span> <span class="pre">|</span> <span class="pre">sum(ri*G))</span></code>
+and their own signature <code class="docutils literal notranslate"><span class="pre">si</span></code>. Finally, a finalizing party can then
+gather all the partial signatures <code class="docutils literal notranslate"><span class="pre">si</span></code>, validate them and produce
+<code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">(sum(si),</span> <span class="pre">sum(ki*G))</span></code>.</p>
+</div>
+<div class="section" id="multiparty-outputs-multisig">
+<h3>Multiparty Outputs (multisig)<a class="headerlink" href="#multiparty-outputs-multisig" title="Permalink to this headline">¶</a></h3>
+<p>We describe here a way to build a transaction with an output that can
+only be spent when multiple parties approve it. This construction is
+very similar to the previous setup for trustless transactions, however
+in this case both the signature and a Pedersen Commitment need to be
+aggregated.</p>
+<p>This time, Alice wants to send funds such that both Bob and her need to
+agree to spend. Alice builds the transaction normally and adds the
+multiparty output such that:</p>
+<ol class="arabic simple">
+<li><p>Bob picks a blinding factor <code class="docutils literal notranslate"><span class="pre">rb</span></code> and sends <code class="docutils literal notranslate"><span class="pre">rb*G</span></code> to Alice.</p></li>
+<li><p>Alice picks a blinding factor <code class="docutils literal notranslate"><span class="pre">ra</span></code> and builds the commitment
+<code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">=</span> <span class="pre">ra*G</span> <span class="pre">+</span> <span class="pre">rb*G</span> <span class="pre">+</span> <span class="pre">v*H</span></code>. She sends the commitment to Bob.</p></li>
+<li><p>Bob creates a range proof for <code class="docutils literal notranslate"><span class="pre">v</span></code> using <code class="docutils literal notranslate"><span class="pre">C</span></code> and <code class="docutils literal notranslate"><span class="pre">rb</span></code> and sends
+it to Alice.</p></li>
+<li><p>Alice generates her own range proof, aggregates it with Bob,
+finalizing the multiparty output <code class="docutils literal notranslate"><span class="pre">Oab</span></code>.</p></li>
+<li><p>The kernel is built following the same procedure as for Trustless
+Transactions.</p></li>
+</ol>
+<p>We observe that for that new output <code class="docutils literal notranslate"><span class="pre">Oab</span></code>, neither party know the
+whole blinding factor. To be able to build a transaction spending Oab,
+someone would need to know <code class="docutils literal notranslate"><span class="pre">ra</span> <span class="pre">+</span> <span class="pre">rb</span></code> to produce a kernel signature. To
+produce that spending kernel, Alice and Bob need to collaborate. This,
+again, is done using a protocol very close to Trustless Transactions.</p>
+</div>
+<div class="section" id="multiparty-timelocks">
+<h3>Multiparty Timelocks<a class="headerlink" href="#multiparty-timelocks" title="Permalink to this headline">¶</a></h3>
+<p>This contract is a building block for multiple other contracts. Here,
+Alice agrees to lock some funds to start a financial interaction with
+Bob and prove to Bob she has funds. The setup is the following:</p>
+<ul class="simple">
+<li><p>Alice builds a a 2-of-2 multiparty transaction with an output she
+shares with Bob, however she does not participate in building the
+kernel signature yet.</p></li>
+<li><p>Bob builds a refund transaction with Alice that sends the funds back
+to Alice using a timelock (for example 1440 blocks ahead, about 24h).</p></li>
+<li><p>Alice and Bob finish the 2-of-2 transaction by building the
+corresponding kernel and broadcast it.</p></li>
+</ul>
+<p>Now Alice and Bob are free to build additional transactions distributing
+the funds locked in the 2-of-2 output in any way they see fit. If Bob
+refuses to cooperate, Alice just needs to broadcast her refund
+transaction after the time lock expires.</p>
+<p>This contract can be trivially used for unidirectional payment channels.</p>
+</div>
+<div class="section" id="conditional-output-timelocks">
+<h3>Conditional Output Timelocks<a class="headerlink" href="#conditional-output-timelocks" title="Permalink to this headline">¶</a></h3>
+<p>Analogous to Bitcoin
+<a class="reference external" href="https://en.bitcoin.it/wiki/Timelock#CheckLockTimeVerify">CheckLockTimeVerify</a>.</p>
+<p>We currently have <em>unconditional</em> lock_heights on txs (tx is not valid
+and will not be accepted until lock_height has passed).</p>
+<p>Private keys can be summed together. Key3 = Key1 + Key2</p>
+<p>Commitments can be summed together. C3 = C1 + C2</p>
+<p>Given <em>unconditional locktimes on txs</em> we can leverage these to give us
+<em>conditional locktimes on outputs</em> by “entangling” two outputs on two
+related txs together.</p>
+<p>We can construct two txs (Tx1, Tx2) with two entangled outputs Out1 and
+Out2 such that -</p>
+<ul class="simple">
+<li><p>Out1 (commitment C1) is from Tx1 and built using Key1</p></li>
+<li><p>Out2 (commitment C2) is from Tx2 and built using Key2</p></li>
+<li><p>Tx2 has an <em>unconditional</em> lock_height on it</p></li>
+</ul>
+<p>If we do this (and we can manage the keys as necessary) -</p>
+<ul class="simple">
+<li><p>Out1 + Out2 can <em>only</em> be spent as a pair using Key3</p></li>
+<li><p>They can <em>only</em> be spent after lock_height from Tx2</p></li>
+</ul>
+<p>Tx1 (containing Out1) can be broadcast, accepted and confirmed on-chain
+immediately. Tx2 cannot be broadcast and accepted until lock_height has
+passed.</p>
+<p>So if Alice only knows K3 and does not know Key1 or Key2, then Out1 can
+only be spent by Alice after lock_height has passed. If Bob on the other
+hand knows Key2 then Out1 can be spent by Bob immediately.</p>
+<p>We have a <em>conditional</em> timelock on Out1 (confirmed, on-chain) where it
+can be spent either with Key3 (after lock_height), <em>or</em> Key2
+immediately.</p>
+</div>
+<div class="section" id="relative-conditional-output-timelocks">
+<h3>(Relative) Conditional Output Timelocks<a class="headerlink" href="#relative-conditional-output-timelocks" title="Permalink to this headline">¶</a></h3>
+<p>Analogous to Bitcoin
+<a class="reference external" href="https://en.bitcoin.it/wiki/Timelock#CheckSequenceVerify">CheckSequenceVerify</a>.</p>
+<p>By combining “Conditional Timelock on Output” with “(Relative)
+Timelocked Transactions” we can encumber a confirmed output with a
+relative timelock (relative to a related tx kernel).</p>
+<p>Tx1 (containing Out1) can be broadcast, accepted and confirmed on-chain
+immediately. Tx2 cannot be broadcast and accepted until the <em>relative</em>
+lock_height has passed, relative to the referenced kernel from the
+earlier Tx1.</p>
+</div>
+<div class="section" id="atomic-swap">
+<h3>Atomic Swap<a class="headerlink" href="#atomic-swap" title="Permalink to this headline">¶</a></h3>
+<p>This setup can work on Bitcoin, Ethereum and likely other chains. It
+relies on a time locked contract combined with a check for 2 public
+keys. On Bitcoin this would be a 2-of-2 multisig, one public key being
+Alice’s, the second being the hash of a preimage that Bob has to reveal.
+In this setup, we consider public key derivation <code class="docutils literal notranslate"><span class="pre">x*G</span></code> to be the hash
+function and by Bob revealing <code class="docutils literal notranslate"><span class="pre">x</span></code>, Alice can then produce an adequate
+signature proving she knows <code class="docutils literal notranslate"><span class="pre">x</span></code> (in addition to her own private key).</p>
+<p>Alice has grins and Bob has bitcoin. They would like to swap. We assume
+Bob created an output on the Bitcoin blockchain that allows spending
+either by Alice if she learns a hash pre-image <code class="docutils literal notranslate"><span class="pre">x</span></code>, or by Bob after
+time <code class="docutils literal notranslate"><span class="pre">Tb</span></code>. Alice is ready to send her grins to Bob if he reveals
+<code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<p>First, Alice sends her grins to a multiparty timelock contract with a
+refund time <code class="docutils literal notranslate"><span class="pre">Ta</span> <span class="pre">&lt;</span> <span class="pre">Tb</span></code>. To send the 2-of-2 output to Bob and execute
+the swap, Alice and Bob start as if they were building a normal
+trustless transaction as specified in section 2.1.</p>
+<ol class="arabic simple">
+<li><p>Alice picks a random nonce <code class="docutils literal notranslate"><span class="pre">ks</span></code> and her blinding sum <code class="docutils literal notranslate"><span class="pre">rs</span></code> and
+sends <code class="docutils literal notranslate"><span class="pre">ks*G</span></code> and <code class="docutils literal notranslate"><span class="pre">rs*G</span></code> to Bob.</p></li>
+<li><p>Bob picks a random blinding factor <code class="docutils literal notranslate"><span class="pre">rr</span></code> and a random nonce <code class="docutils literal notranslate"><span class="pre">kr</span></code>.
+However this time, instead of simply sending <code class="docutils literal notranslate"><span class="pre">sr</span> <span class="pre">=</span> <span class="pre">kr</span> <span class="pre">+</span> <span class="pre">e</span> <span class="pre">*</span> <span class="pre">rr</span></code>
+with his <code class="docutils literal notranslate"><span class="pre">rr*G</span></code> and <code class="docutils literal notranslate"><span class="pre">kr*G</span></code>, Bob sends <code class="docutils literal notranslate"><span class="pre">sr'</span> <span class="pre">=</span> <span class="pre">kr</span> <span class="pre">+</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">e</span> <span class="pre">*</span> <span class="pre">rr</span></code>
+as well as <code class="docutils literal notranslate"><span class="pre">x*G</span></code>.</p></li>
+<li><p>Alice can validate that <code class="docutils literal notranslate"><span class="pre">sr'*G</span> <span class="pre">=</span> <span class="pre">kr*G</span> <span class="pre">+</span> <span class="pre">x*G</span> <span class="pre">+</span> <span class="pre">rr*G</span></code>. She can also
+check that Bob has money locked with <code class="docutils literal notranslate"><span class="pre">x*G</span></code> on the other chain.</p></li>
+<li><p>Alice sends back her <code class="docutils literal notranslate"><span class="pre">ss</span> <span class="pre">=</span> <span class="pre">ks</span> <span class="pre">+</span> <span class="pre">e</span> <span class="pre">*</span> <span class="pre">xs</span></code> as she normally would, now
+that she can also compute <code class="docutils literal notranslate"><span class="pre">e</span> <span class="pre">=</span> <span class="pre">SHA256(M</span> <span class="pre">|</span> <span class="pre">ks*G</span> <span class="pre">+</span> <span class="pre">kr*G)</span></code>.</p></li>
+<li><p>To complete the signature, Bob computes <code class="docutils literal notranslate"><span class="pre">sr</span> <span class="pre">=</span> <span class="pre">kr</span> <span class="pre">+</span> <span class="pre">e</span> <span class="pre">*</span> <span class="pre">rr</span></code> and the
+final signature is <code class="docutils literal notranslate"><span class="pre">(sr</span> <span class="pre">+</span> <span class="pre">ss,</span> <span class="pre">kr*G</span> <span class="pre">+</span> <span class="pre">ks*G)</span></code>.</p></li>
+<li><p>As soon as Bob broadcasts the final transaction to get his new grins,
+Alice can compute <code class="docutils literal notranslate"><span class="pre">sr'</span> <span class="pre">-</span> <span class="pre">sr</span></code> to get <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p></li>
+</ol>
+<div class="section" id="notes-on-the-bitcoin-setup">
+<h4>Notes on the Bitcoin setup<a class="headerlink" href="#notes-on-the-bitcoin-setup" title="Permalink to this headline">¶</a></h4>
+<p>Prior to completing the atomic swap, Bob needs to know Alice’s public
+key. Bob would then create an output on the Bitcoin blockchain with a
+2-of-2 multisig similar to
+<code class="docutils literal notranslate"><span class="pre">alice_pubkey</span> <span class="pre">secret_pubkey</span> <span class="pre">2</span> <span class="pre">OP_CHECKMULTISIG</span></code>. This should be
+wrapped in an <code class="docutils literal notranslate"><span class="pre">OP_IF</span></code> so Bob can get his money back after an
+agreed-upon time and all of this can even be wrapped in a P2SH. Here
+<code class="docutils literal notranslate"><span class="pre">secret_pubkey</span></code> is <code class="docutils literal notranslate"><span class="pre">x*G</span></code> from the previous section.</p>
+<p>To verify the output, Alice would take <code class="docutils literal notranslate"><span class="pre">x*G</span></code>, recreate the bitcoin
+script, hash it and check that her hash matches what’s in the P2SH (step
+2 in previous section). Once she gets <code class="docutils literal notranslate"><span class="pre">x</span></code> (step 6), she can build the
+2 signatures necessary to spend the 2-of-2, having both private keys,
+and get her bitcoin.</p>
+</div>
+</div>
+<div class="section" id="relative-timelocks-lightning-network">
+<h3>“Relative Timelocks” (Lightning Network)<a class="headerlink" href="#relative-timelocks-lightning-network" title="Permalink to this headline">¶</a></h3>
+<p>See <a class="reference external" href="https://github.com/mimblewimble/grin-rfcs/blob/master/text/0013-nrd-kernels.md">No Recent Duplicate (NRD) transaction kernels
+RFC</a>
+for more details.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Grin Developers
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book fa-element"> RTD </span>
+
+    <span class="fa fa-element">
+    <input class="container_toggle" type="checkbox" id="switch" name="mode">
+    <label for="switch"></label>
+    </span>
+
+    <span class="fa fa-v fa-element"> v:  <span class="fa fa-caret-down"></span></span>
+
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Versions</dt> 
+        </dl>
+        <dl>
+            <dt>Downloads</dt> 
+        </dl>
+        <dl>
+            
+            <dt>On Read the Docs</dt>
+            <dd>
+                <a href="///projects//?fromdocs=">Project Home</a>
+            </dd>
+            <dd>
+                <a href="///builds//?fromdocs=">Builds</a>
+            </dd>
+        </dl>
+    </div>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

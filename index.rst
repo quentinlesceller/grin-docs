@@ -80,7 +80,16 @@ Contents
 
    technical/table-of-contents.rst
    technical/introduction-to-mimblewimble.rst
+   technical/grin-for-bitcoiners.rst
 
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Building Blocks
+
+   technical/building-blocks/merkle-mountain-ranges.rst
+   technical/building-blocks/merkle-proof.rst
+   technical/building-blocks/switch-commitments.rst
 
 Indices and tables
 ==================
