@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Welcome to Grin’s documentation! &mdash; Grin v4.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/toggle.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/rtd_sphinx_search.min.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/js/toggle.js"></script>
+        <script src="_static/js/rtd_sphinx_search.min.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Integration" href="integration/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#">
+          
+
+          
+            
+            <img src="_static/grin-logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Integration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="integration/index.html">Integration</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Technical Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="technical/table-of-contents.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technical/introduction-to-mimblewimble.html">Technical Introduction to Mimblewimble</a></li>
+</ul>
+
+            
+          
+    <a href="genindex.html">Keyword Index</a>
+  
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Grin</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Welcome to Grin’s documentation!</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="welcome-to-grin-s-documentation">
+<h1>Welcome to Grin’s documentation!<a class="headerlink" href="#welcome-to-grin-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="introduction-to-mimblewimble-and-grin">
+<h2>Introduction to Mimblewimble and Grin<a class="headerlink" href="#introduction-to-mimblewimble-and-grin" title="Permalink to this headline">¶</a></h2>
+<p>Mimblewimble is a blockchain format and protocol that provides extremely
+good scalability, privacy and fungibility by relying on strong
+cryptographic primitives. It addresses gaps existing in almost all
+current blockchain implementations.</p>
+<p>Grin is an open source software project that implements a Mimblewimble
+blockchain and fills the gaps required for a full blockchain and
+cryptocurrency deployment.</p>
+<p>Here’s an overview:</p>
+<ul class="simple">
+<li><p>Clean and minimal implementation, and aiming to stay as such.</p></li>
+<li><p>Follows the MimbleWimble protocol, which provides great anonymity and
+scaling characteristics.</p></li>
+<li><p>Cuckoo Cycle proof of work.</p></li>
+<li><p>Relatively fast block time: one minute.</p></li>
+<li><p>Fixed block reward over time with a decreasing dilution.</p></li>
+<li><p>Transaction fees are based on the number of Outputs created/destroyed
+and total transaction size.</p></li>
+<li><p>Smooth curve for difficulty adjustments.</p></li>
+</ul>
+</div>
+<div class="section" id="goal-and-characteristics">
+<h2>Goal and Characteristics<a class="headerlink" href="#goal-and-characteristics" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="privacy-by-default">
+<h3>Privacy by Default<a class="headerlink" href="#privacy-by-default" title="Permalink to this headline">¶</a></h3>
+<p>This enables complete fungibility without precluding the ability to
+selectively disclose information as needed. Scales mostly with the
+number of users and minimally with the number of transactions (&lt;100 byte
+kernel), resulting in a large space saving compared to other
+blockchains.</p>
+</div>
+<div class="section" id="strong-and-proven-cryptography">
+<h3>Strong and proven cryptography<a class="headerlink" href="#strong-and-proven-cryptography" title="Permalink to this headline">¶</a></h3>
+<p>Mimblewimble only relies on Elliptic Caurve Cryptography which has been
+tried and tested for decades.</p>
+</div>
+<div class="section" id="design-simplicity">
+<h3>Design simplicity<a class="headerlink" href="#design-simplicity" title="Permalink to this headline">¶</a></h3>
+<p>Easy to audit and maintain over time</p>
+</div>
+<div class="section" id="community-driven">
+<h3>Community driven<a class="headerlink" href="#community-driven" title="Permalink to this headline">¶</a></h3>
+<p>Community driven, encouraging mining decentralization. No ICO, Founder
+reward, pre-mine or aidrop.</p>
+</div>
+</div>
+</div>
+<div class="section" id="contents">
+<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="genindex.html"><span class="std std-ref">Keyword Index</span></a>, <a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Integration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="integration/index.html">Integration</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Technical Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="technical/table-of-contents.html">Table of Contents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="technical/table-of-contents.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical/table-of-contents.html#building-blocks">Building Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical/table-of-contents.html#blockchain-and-consensus">Blockchain and Consensus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical/table-of-contents.html#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="technical/introduction-to-mimblewimble.html">Technical Introduction to Mimblewimble</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="technical/introduction-to-mimblewimble.html#tongue-tying-for-everyone">Tongue Tying for Everyone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical/introduction-to-mimblewimble.html#tiny-bits-of-elliptic-curves">Tiny Bits of Elliptic Curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical/introduction-to-mimblewimble.html#transacting-with-mimblewimble">Transacting with Mimblewimble</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical/introduction-to-mimblewimble.html#blocks-and-chain-state">Blocks and Chain State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical/introduction-to-mimblewimble.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="integration/index.html" class="btn btn-neutral float-right" title="Integration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Grin Developers
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
