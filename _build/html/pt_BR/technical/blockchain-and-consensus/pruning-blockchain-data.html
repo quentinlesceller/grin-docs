@@ -1,0 +1,350 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Pruning Blockchain Data &mdash; documentação Grin v4.0.0</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="State and Storage" href="state-and-storage.html" />
+    <link rel="prev" title="Grin’s Proof-of-Work" href="proof-of-work.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Grin
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Integration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../integration/index.html">Integration</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Technical Details</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../table-of-contents.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction-to-mimblewimble.html">Technical Introduction to Mimblewimble</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grin-for-bitcoiners.html">Grin for Bitcoiners</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building-blocks/index.html">Building Blocks</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Blockchain and Consensus</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="coinbase-maturity-rule.html">Coinbase Maturity Rule (aka Output Lock Heights)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fast-sync.html">Fast Sync</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proof-of-work.html">Grin’s Proof-of-Work</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Pruning Blockchain Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#validation-of-fully-pruned-state">Validation of Fully Pruned State</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="state-and-storage.html">State and Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/index.html">Miscellaneous</a></li>
+</ul>
+
+            
+          
+    <a href="genindex.html">Keyword Index</a>
+  
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Grin</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Blockchain and Consensus</a> &raquo;</li>
+        
+      <li>Pruning Blockchain Data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/technical/blockchain-and-consensus/pruning-blockchain-data.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pruning-blockchain-data">
+<h1>Pruning Blockchain Data<a class="headerlink" href="#pruning-blockchain-data" title="Link permanente para este título">¶</a></h1>
+<p>One of the principal attractions of Mimblewimble is its theoretical
+space efficiency. Indeed, a trusted or pre-validated full blockchain
+state only requires unspent transaction outputs, which could be tiny.</p>
+<p>The grin blockchain includes the following types of data (we assume
+prior understanding of the Mimblewimble protocol):</p>
+<ol class="arabic simple">
+<li><p>Transaction outputs, which include for each output:</p>
+<ol class="arabic simple">
+<li><p>A Pedersen commitment (33 bytes).</p></li>
+<li><p>A range proof (over 5KB at this time).</p></li>
+</ol>
+</li>
+<li><p>Transaction inputs, which are just output references (32 bytes).</p></li>
+<li><p>Transaction “proofs”, which include for each transaction:</p>
+<ol class="arabic simple">
+<li><p>The excess commitment sum for the transaction (33 bytes).</p></li>
+<li><p>A signature generated with the excess (71 bytes average).</p></li>
+</ol>
+</li>
+<li><p>A block header includes Merkle trees and proof of work (about 250
+bytes).</p></li>
+</ol>
+<p>Assuming a blockchain of a million blocks, 10 million transactions (2
+inputs, 2.5 outputs average) and 100,000 unspent outputs, we get the
+following approximate sizes with a full chain (no pruning, no
+cut-through):</p>
+<ul class="simple">
+<li><p>128GB of transaction data (inputs and outputs).</p></li>
+<li><p>1 GB of transaction proof data.</p></li>
+<li><p>250MB of block headers.</p></li>
+<li><p>Total chain size around 130GB.</p></li>
+<li><p>Total chain size, after cut-through (but incl. headers) of 1.8GB.</p></li>
+<li><p>UTXO size of 520MB.</p></li>
+<li><p>Total chain size, without range proofs of 4GB.</p></li>
+<li><p>UTXO size, without range proofs of 3.3MB.</p></li>
+</ul>
+<p>We note that out of all that data, once the chain has been fully
+validated, only the set of UTXO commitments is strictly required for a
+node to function.</p>
+<p>There may be several contexts in which data can be pruned:</p>
+<ul class="simple">
+<li><p>A fully validating node may get rid of some data it has already
+validated to free space.</p></li>
+<li><p>A partially validating node (similar to SPV) may not be interested in
+either receiving or keeping all the data.</p></li>
+<li><p>When a new node joins the network, it may temporarily behave as a
+partially validating node to make it available for use faster, even
+if it ultimately becomes a fully validating node.</p></li>
+</ul>
+<div class="section" id="validation-of-fully-pruned-state">
+<h2>Validation of Fully Pruned State<a class="headerlink" href="#validation-of-fully-pruned-state" title="Link permanente para este título">¶</a></h2>
+<p>Pruning needs to remove as much data as possible while keeping all the
+guarantees of a full Mimblewimble-style validation. This is necessary to
+keep a pruning node state’s sane, but also on first fast sync, where
+only the minimum amount of data is sent to a new node.</p>
+<p>The full validation of the chain state requires that:</p>
+<ul class="simple">
+<li><p>All kernel signatures verify against their public keys.</p></li>
+<li><p>The sum of all UTXO commitments, minus the supply is a valid public
+key (can be used to sign the empty string).</p></li>
+<li><p>The sum of all kernel pubkeys equals the sum of all UTXO commitments,
+minus the supply.</p></li>
+<li><p>The root hashes of the UTXO PMMR, the range proofs PMMR and the
+kernels MMR match a block header with a valid Proof of Work chain.</p></li>
+<li><p>All range proofs are valid.</p></li>
+</ul>
+<p>In addition, while not necessary to validate the full chain state, to be
+able to accept and validate new blocks additional data is required:</p>
+<ul class="simple">
+<li><p>The output features, making the full output data necessary for all
+UTXOs.</p></li>
+</ul>
+<p>At minimum, this requires the following data:</p>
+<ul class="simple">
+<li><p>The block headers chain.</p></li>
+<li><p>All kernels, in order of inclusion in the chain. This also allows the
+reconstruction of the kernel MMR.</p></li>
+<li><p>All unspent outputs.</p></li>
+<li><p>The UTXO MMR and the range proof MMR (to learn the hashes of pruned
+data).</p></li>
+</ul>
+<p>Note that further pruning could be obtained by requiring the validation
+of only a subset of the range proofs, chosen randomly by the validating
+node.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="state-and-storage.html" class="btn btn-neutral float-right" title="State and Storage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="proof-of-work.html" class="btn btn-neutral float-left" title="Grin’s Proof-of-Work" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Grin Developers
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book fa-element"> RTD </span>
+
+    <span class="fa fa-v fa-element"> v:  <span class="fa fa-caret-down"></span></span>
+
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Versions</dt> 
+        </dl>
+        <dl>
+            <dt>Downloads</dt> 
+        </dl>
+        <dl>
+            
+            <dt>On Read the Docs</dt>
+            <dd>
+                <a href="///projects//?fromdocs=">Project Home</a>
+            </dd>
+            <dd>
+                <a href="///builds//?fromdocs=">Builds</a>
+            </dd>
+        </dl>
+    </div>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

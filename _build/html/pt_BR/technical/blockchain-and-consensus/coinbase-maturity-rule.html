@@ -1,0 +1,358 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Coinbase Maturity Rule (aka Output Lock Heights) &mdash; documentação Grin v4.0.0</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="Fast Sync" href="fast-sync.html" />
+    <link rel="prev" title="Blockchain and Consensus" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Grin
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Integration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../integration/index.html">Integration</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Technical Details</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../table-of-contents.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction-to-mimblewimble.html">Technical Introduction to Mimblewimble</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grin-for-bitcoiners.html">Grin for Bitcoiners</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building-blocks/index.html">Building Blocks</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Blockchain and Consensus</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Coinbase Maturity Rule (aka Output Lock Heights)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fast-sync.html">Fast Sync</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proof-of-work.html">Grin’s Proof-of-Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pruning-blockchain-data.html">Pruning Blockchain Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state-and-storage.html">State and Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/index.html">Miscellaneous</a></li>
+</ul>
+
+            
+          
+    <a href="genindex.html">Keyword Index</a>
+  
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Grin</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Blockchain and Consensus</a> &raquo;</li>
+        
+      <li>Coinbase Maturity Rule (aka Output Lock Heights)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/technical/blockchain-and-consensus/coinbase-maturity-rule.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="coinbase-maturity-rule-aka-output-lock-heights">
+<h1>Coinbase Maturity Rule (aka Output Lock Heights)<a class="headerlink" href="#coinbase-maturity-rule-aka-output-lock-heights" title="Link permanente para este título">¶</a></h1>
+<p>Coinbase outputs (block rewards &amp; fees) are “locked” and require 1,440
+confirmations (i.e 24 hours worth of blocks added to the chain) before
+they mature sufficiently to be spendable. This is to reduce the risk of
+later txs being reversed if a chain reorganization occurs.</p>
+<p>Bitcoin does something very similar, requiring 100 confirmations
+(Bitcoin blocks are every 10 minutes, Grin blocks are every 60 seconds)
+before mining rewards can be spent.</p>
+<p>Grin enforces coinbase maturity in both the transaction pool and the
+block validation pipeline. A transaction containing an input spending a
+coinbase output cannot be added to the transaction pool until it has
+sufficiently matured (based on current chain height and the height of
+the block producing the coinbase output). Similarly a block is invalid
+if it contains an input spending a coinbase output before it has
+sufficiently matured, based on the height of the block containing the
+input and the height of the block that originally produced the coinbase
+output.</p>
+<p>The maturity rule <em>only</em> applies to coinbase outputs, regular
+transaction outputs have an effective lock height of zero.</p>
+<p>An output consists of -</p>
+<ul class="simple">
+<li><p>features (currently coinbase vs. non-coinbase)</p></li>
+<li><p>commitment <code class="docutils literal notranslate"><span class="pre">rG+vH</span></code></p></li>
+<li><p>rangeproof</p></li>
+</ul>
+<p>To spend a regular transaction output two conditions must be met. We
+need to show the output has not been previously spent and we need to
+prove ownership of the output.</p>
+<p>A Grin transaction consists of the following -</p>
+<ul class="simple">
+<li><p>A set of inputs, each referencing a previous output being spent.</p></li>
+<li><p>A set of new outputs that include -</p>
+<ul>
+<li><p>A value <code class="docutils literal notranslate"><span class="pre">v</span></code> and a blinding factor (private key) <code class="docutils literal notranslate"><span class="pre">r</span></code> multiplied
+on a curve and summed to be <code class="docutils literal notranslate"><span class="pre">rG+vH</span></code></p></li>
+<li><p>A range proof that shows that v is non-negative.</p></li>
+</ul>
+</li>
+<li><p>An explicit transaction fee in the clear.</p></li>
+<li><p>A signature, computed by taking the excess blinding value (the sum of
+all outputs plus the fee, minus the inputs) and using it as the
+private key.</p></li>
+</ul>
+<p>We can show the output is unspent by looking for the commitment in the
+current Output set. The Output set is authoritative; if the output
+exists in the Output set we know it has not yet been spent. If an output
+does not exist in the Output set we know it has either never existed, or
+that it previously existed and has been spent (we will not necessarily
+know which).</p>
+<p>To prove ownership we can verify the transaction signature. We can
+<em>only</em> have signed the transaction if the transaction sums to zero <em>and</em>
+we know both <code class="docutils literal notranslate"><span class="pre">v</span></code> and <code class="docutils literal notranslate"><span class="pre">r</span></code>.</p>
+<p>Knowing <code class="docutils literal notranslate"><span class="pre">v</span></code> and <code class="docutils literal notranslate"><span class="pre">r</span></code> we can uniquely identify the output (via its
+commitment) <em>and</em> we can prove ownership of the output by validating the
+signature on the original coinbase transaction.</p>
+<p>Grin does not permit duplicate commitments to exist in the Output set at
+the same time. But once an output is spent it is removed from the Output
+set and a duplicate commitment can be added back into the Output set.
+This is not necessarily recommended but Grin must handle this situation
+in a way that does not break consensus across the network.</p>
+<p>Several things complicate this situation -</p>
+<ol class="arabic simple">
+<li><p>It is possible for two blocks to have identical rewards, particularly
+for the case of empty blocks, but also possible for non-empty blocks
+with transaction fees.</p></li>
+<li><p>It is possible for a non-coinbase output to have the same value as a
+coinbase output.</p></li>
+<li><p>It is possible (but not recommended) for a miner to reuse private
+keys.</p></li>
+</ol>
+<p>Grin does not allow duplicate commitments to exist in the Output set
+simultaneously. But the Output set is specific to the state of a
+particular chain fork. It <em>is</em> possible for duplicate <em>identical</em>
+commitments to exist simultaneously on different concurrent forks. And
+these duplicate commitments may have different “lock heights” at which
+they mature and become spendable on the different forks.</p>
+<ul class="simple">
+<li><p>Output O1 from block B1 spendable at height h1 (on fork f1)</p></li>
+<li><p>Output O1’ from block B2 spendable at height h2 (on fork f2)</p></li>
+</ul>
+<p>The complication here is that input I1 will spend either O1 or O1’
+depending on which fork the block containing I1 exists on. And crucially
+I1 may be valid at a particular block height on one fork but not the
+other.</p>
+<p>Said another way - a commitment may refer to multiple outputs, all of
+which may have different lock heights. And we <em>must</em> ensure we correctly
+identify which output is actually being spent and that the coinbase
+maturity rules are correctly enforced based on the current chain state.</p>
+<p>A coinbase output, locked with the coinbase maturity rule at a specific
+lock height, <em>cannot</em> be uniquely identified, and <em>cannot</em> be safely
+spent by their commitment alone. To spend a coinbase output we need to
+know one additional piece of information -</p>
+<ul class="simple">
+<li><p>The block the coinbase output originated from</p></li>
+</ul>
+<p>Given this, we can verify the height of the block and derive the “lock
+height” of the output (+ 1,000 blocks).</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fast-sync.html" class="btn btn-neutral float-right" title="Fast Sync" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Blockchain and Consensus" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Grin Developers
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book fa-element"> RTD </span>
+
+    <span class="fa fa-v fa-element"> v:  <span class="fa fa-caret-down"></span></span>
+
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Versions</dt> 
+        </dl>
+        <dl>
+            <dt>Downloads</dt> 
+        </dl>
+        <dl>
+            
+            <dt>On Read the Docs</dt>
+            <dd>
+                <a href="///projects//?fromdocs=">Project Home</a>
+            </dd>
+            <dd>
+                <a href="///builds//?fromdocs=">Builds</a>
+            </dd>
+        </dl>
+    </div>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

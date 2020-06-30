@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Grin for Bitcoiners &mdash; documentação Grin v4.0.0</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="Building Blocks" href="building-blocks/index.html" />
+    <link rel="prev" title="Technical Introduction to Mimblewimble" href="introduction-to-mimblewimble.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Grin
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Integration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../integration/index.html">Integration</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Technical Details</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="table-of-contents.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction-to-mimblewimble.html">Technical Introduction to Mimblewimble</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Grin for Bitcoiners</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#privacy-and-fungibility">Privacy and Fungibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scalability">Scalability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scripting">Scripting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#emission-rate">Emission Rate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#faq">FAQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#wait-what-no-address">Wait, what!? No address?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#if-transaction-information-gets-removed-can-i-just-cheat-and-create-money">If transaction information gets removed, can I just cheat and create money?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#if-i-listen-to-transaction-relay-cant-i-just-figure-out-who-they-belong-to-before-being-cut-through">If I listen to transaction relay, can’t I just figure out who they belong to before being cut-through?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-about-the-quantum-computaggedon">What about the quantum computaggedon?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-does-all-this-magic-work">How does all this magic work?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="building-blocks/index.html">Building Blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blockchain-and-consensus/index.html">Blockchain and Consensus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="miscellaneous/index.html">Miscellaneous</a></li>
+</ul>
+
+            
+          
+    <a href="genindex.html">Keyword Index</a>
+  
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Grin</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Grin for Bitcoiners</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/technical/grin-for-bitcoiners.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="grin-for-bitcoiners">
+<h1>Grin for Bitcoiners<a class="headerlink" href="#grin-for-bitcoiners" title="Link permanente para este título">¶</a></h1>
+<div class="section" id="privacy-and-fungibility">
+<h2>Privacy and Fungibility<a class="headerlink" href="#privacy-and-fungibility" title="Link permanente para este título">¶</a></h2>
+<p>There are 3 main properties of Grin transactions that make them private:</p>
+<ol class="arabic simple">
+<li><p>There are no addresses.</p></li>
+<li><p>There are no amounts.</p></li>
+<li><p>2 transactions, one spending the other, can be merged in a block to
+form only one, removing all intermediary information.</p></li>
+</ol>
+<p>The 2 first properties mean that all transactions are indistinguishable
+from one another. Unless you directly participated in the transaction,
+all inputs and outputs look like random pieces of data (in lingo,
+they’re all random curve points).</p>
+<p>Moreover, there are no more transactions in a block. A Grin block looks
+just like one giant transaction and all original association between
+inputs and outputs is lost.</p>
+</div>
+<div class="section" id="scalability">
+<h2>Scalability<a class="headerlink" href="#scalability" title="Link permanente para este título">¶</a></h2>
+<p>As explained in the previous section, thanks to the Mimblewimble
+transaction and block format we can merge transactions when an output is
+directly spent by the input of another. It’s as if when Alice gives
+money to Bob, and then Bob gives it all to Carol, Bob was never involved
+and his transaction is actually never even seen on the blockchain.</p>
+<p>Pushing that further, between blocks, most outputs end up being spent
+sooner or later by another input. So <em>all spent outputs can be safely
+removed</em>. And the whole blockchain can be stored, downloaded and fully
+verified in just a few gigabytes or less (assuming a number of
+transactions similar to bitcoin).</p>
+<p>This means that the Grin blockchain scales with the number of users
+(unspent outputs), not the number of transactions. At the moment, there
+is one caveat to that: a small piece of data (called a <em>kernel</em>, about
+100 bytes) needs to stay around for each transaction. But we’re working
+on optimizing that as well.</p>
+</div>
+<div class="section" id="scripting">
+<h2>Scripting<a class="headerlink" href="#scripting" title="Link permanente para este título">¶</a></h2>
+<p>Maybe you’ve heard that Mimblewimble doesn’t support scripts. And in
+some way, that’s true. But thanks to cryptographic trickery, many
+contracts that in Bitcoin would require a script can be achieved with
+Grin using properties of Elliptic Curve Cryptography. So far, we know
+how to do:</p>
+<ul class="simple">
+<li><p>Multi-signature transactions.</p></li>
+<li><p>Atomic swaps.</p></li>
+<li><p>Time-locked transactions and outputs.</p></li>
+<li><p>Lightning Network</p></li>
+</ul>
+</div>
+<div class="section" id="emission-rate">
+<h2>Emission Rate<a class="headerlink" href="#emission-rate" title="Link permanente para este título">¶</a></h2>
+<p>Bitcoin’s 10 minute block time has its initial 50 btc reward cut in half
+every 4 years until there are 21 million bitcoin in circulation. Grin’s
+emission rate is linear, meaning it never drops. The block reward is
+currently set at 60 grin with a block goal of 60 seconds. This still
+works because 1) dilution trends toward zero and 2) a non-negligible
+amount of coins gets lost or destroyed every year.</p>
+</div>
+<div class="section" id="faq">
+<h2>FAQ<a class="headerlink" href="#faq" title="Link permanente para este título">¶</a></h2>
+<div class="section" id="wait-what-no-address">
+<h3>Wait, what!? No address?<a class="headerlink" href="#wait-what-no-address" title="Link permanente para este título">¶</a></h3>
+<p>Nope, no address. All outputs in Grin are unique and have no common data
+with any previous output. Instead of relying on a known address to send
+money, transactions have to be built interactively, with two (or more)
+wallets exchanging data with one another. This interaction <strong>does not
+require both parties to be online at the same time</strong>. Practically
+speaking, there are many ways for two programs to interact privately and
+securely. This interaction could even take place over email or Signal
+(or carrier pigeons).</p>
+</div>
+<div class="section" id="if-transaction-information-gets-removed-can-i-just-cheat-and-create-money">
+<h3>If transaction information gets removed, can I just cheat and create money?<a class="headerlink" href="#if-transaction-information-gets-removed-can-i-just-cheat-and-create-money" title="Link permanente para este título">¶</a></h3>
+<p>No, and this is where Mimblewimble and Grin shine. Confidential
+transactions are a form of <a class="reference external" href="https://en.wikipedia.org/wiki/Homomorphic_encryption">homomorphic
+encryption</a>.
+Without revealing any amount, Grin can verify that the sum of all
+transaction inputs equal the sum of transaction outputs, plus the fee.
+Going even further, comparing the sum of all money created by mining
+with the total sum of money that’s being held, Grin nodes can check the
+correctness of the total money supply.</p>
+</div>
+<div class="section" id="if-i-listen-to-transaction-relay-cant-i-just-figure-out-who-they-belong-to-before-being-cut-through">
+<h3>If I listen to transaction relay, can’t I just figure out who they belong to before being cut-through?<a class="headerlink" href="#if-i-listen-to-transaction-relay-cant-i-just-figure-out-who-they-belong-to-before-being-cut-through" title="Link permanente para este título">¶</a></h3>
+<p>You can figure out which outputs are being spent by which transaction,
+but the trail of data stops here. All inputs and outputs look like
+random pieces of data, so you can’t tell if the money was transferred,
+still belongs to the same person, which output is the actual transfer
+and which is the change, etc. Grin transactions are built with <em>no
+identifiable piece of information</em>.</p>
+<p>In addition, Grin leverages <a class="reference external" href="miscellaneous/dandelion.md">Dandelion
+relay</a>, which provides additional
+anonymity as to which IP or client the transaction originated from, and
+allows for transactions to be aggregated.</p>
+</div>
+<div class="section" id="what-about-the-quantum-computaggedon">
+<h3>What about the quantum computaggedon?<a class="headerlink" href="#what-about-the-quantum-computaggedon" title="Link permanente para este título">¶</a></h3>
+<p>In every Grin output, we also include a bit of hashed data, which is
+quantum safe. If quantum computing was to become a reality, we can
+safely introduce additional verification that would protect existing
+coins from being hacked.</p>
+</div>
+<div class="section" id="how-does-all-this-magic-work">
+<h3>How does all this magic work?<a class="headerlink" href="#how-does-all-this-magic-work" title="Link permanente para este título">¶</a></h3>
+<p>See our <a class="reference external" href="introduction-to-mimblewimble.md">technical introduction</a> to
+get started.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="building-blocks/index.html" class="btn btn-neutral float-right" title="Building Blocks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction-to-mimblewimble.html" class="btn btn-neutral float-left" title="Technical Introduction to Mimblewimble" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Grin Developers
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book fa-element"> RTD </span>
+
+    <span class="fa fa-v fa-element"> v:  <span class="fa fa-caret-down"></span></span>
+
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Versions</dt> 
+        </dl>
+        <dl>
+            <dt>Downloads</dt> 
+        </dl>
+        <dl>
+            
+            <dt>On Read the Docs</dt>
+            <dd>
+                <a href="///projects//?fromdocs=">Project Home</a>
+            </dd>
+            <dd>
+                <a href="///builds//?fromdocs=">Builds</a>
+            </dd>
+        </dl>
+    </div>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

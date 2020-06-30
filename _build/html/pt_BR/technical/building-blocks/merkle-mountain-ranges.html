@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Merkle Mountain Ranges &mdash; documentação Grin v4.0.0</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script src="../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="Merkle Proof" href="merkle-proof.html" />
+    <link rel="prev" title="Building Blocks" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Grin
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Integration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../integration/index.html">Integration</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Technical Details</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../table-of-contents.html">Table of Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction-to-mimblewimble.html">Technical Introduction to Mimblewimble</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grin-for-bitcoiners.html">Grin for Bitcoiners</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Building Blocks</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Merkle Mountain Ranges</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hashing-and-bagging">Hashing and Bagging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pruning">Pruning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="merkle-proof.html">Merkle Proof</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switch-commitments.html">Introduction to Switch Commitments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../blockchain-and-consensus/index.html">Blockchain and Consensus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/index.html">Miscellaneous</a></li>
+</ul>
+
+            
+          
+    <a href="genindex.html">Keyword Index</a>
+  
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Grin</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Building Blocks</a> &raquo;</li>
+        
+      <li>Merkle Mountain Ranges</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/technical/building-blocks/merkle-mountain-ranges.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="merkle-mountain-ranges">
+<h1>Merkle Mountain Ranges<a class="headerlink" href="#merkle-mountain-ranges" title="Link permanente para este título">¶</a></h1>
+<div class="section" id="structure">
+<h2>Structure<a class="headerlink" href="#structure" title="Link permanente para este título">¶</a></h2>
+<p>Merkle Mountain Ranges[1] are an alternative to Merkle trees[2]. While
+the latter relies on perfectly balanced binary trees, the former can be
+seen either as list of perfectly balance binary trees or a single binary
+tree that would have been truncated from the top right. A Merkle
+Mountain Range (MMR) is strictly append-only: elements are added from
+the left to the right, adding a parent as soon as 2 children exist,
+filling up the range accordingly.</p>
+<p>This illustrates a range with 11 inserted leaves and total size 19,
+where each node is annotated with its order of insertion.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Height</span>
+
+<span class="mi">3</span>              <span class="mi">14</span>
+             <span class="o">/</span>    \
+            <span class="o">/</span>      \
+           <span class="o">/</span>        \
+          <span class="o">/</span>          \
+<span class="mi">2</span>        <span class="mi">6</span>            <span class="mi">13</span>
+       <span class="o">/</span>   \        <span class="o">/</span>    \
+<span class="mi">1</span>     <span class="mi">2</span>     <span class="mi">5</span>      <span class="mi">9</span>     <span class="mi">12</span>     <span class="mi">17</span>
+     <span class="o">/</span> \   <span class="o">/</span> \    <span class="o">/</span> \   <span class="o">/</span>  \   <span class="o">/</span>  \
+<span class="mi">0</span>   <span class="mi">0</span>   <span class="mi">1</span> <span class="mi">3</span>   <span class="mi">4</span>  <span class="mi">7</span>   <span class="mi">8</span> <span class="mi">10</span>  <span class="mi">11</span> <span class="mi">15</span>  <span class="mi">16</span> <span class="mi">18</span>
+</pre></div>
+</div>
+<p>This can be represented as a flat list, here storing the height of each
+node at their position of insertion:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>  <span class="mi">1</span>  <span class="mi">2</span>  <span class="mi">3</span>  <span class="mi">4</span>  <span class="mi">5</span>  <span class="mi">6</span>  <span class="mi">7</span>  <span class="mi">8</span>  <span class="mi">9</span> <span class="mi">10</span> <span class="mi">11</span> <span class="mi">12</span> <span class="mi">13</span> <span class="mi">14</span> <span class="mi">15</span> <span class="mi">16</span> <span class="mi">17</span> <span class="mi">18</span>
+<span class="mi">0</span>  <span class="mi">0</span>  <span class="mi">1</span>  <span class="mi">0</span>  <span class="mi">0</span>  <span class="mi">1</span>  <span class="mi">2</span>  <span class="mi">0</span>  <span class="mi">0</span>  <span class="mi">1</span>  <span class="mi">0</span>  <span class="mi">0</span>  <span class="mi">1</span>  <span class="mi">2</span>  <span class="mi">3</span>  <span class="mi">0</span>  <span class="mi">0</span>  <span class="mi">1</span>  <span class="mi">0</span>
+</pre></div>
+</div>
+<p>This structure can be fully described simply from its size (19). It’s
+also fairly simple, using fast binary operations, to navigate within a
+MMR. Given a node’s position <code class="docutils literal notranslate"><span class="pre">n</span></code>, we can compute its height, the
+position of its parent, its siblings, etc.</p>
+</div>
+<div class="section" id="hashing-and-bagging">
+<h2>Hashing and Bagging<a class="headerlink" href="#hashing-and-bagging" title="Link permanente para este título">¶</a></h2>
+<p>Just like with Merkle trees, parent nodes in a MMR have for value the
+hash of their 2 children. Grin uses the Blake2b hash function
+throughout, and always prepends the node’s position in the MMR before
+hashing to avoid collisions. So for a leaf <code class="docutils literal notranslate"><span class="pre">l</span></code> at index <code class="docutils literal notranslate"><span class="pre">n</span></code> storing
+data <code class="docutils literal notranslate"><span class="pre">D</span></code> (in the case of an output, the data is its Pedersen
+commitment, for example), we have:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Node</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">=</span> <span class="n">Blake2b</span><span class="p">(</span><span class="n">n</span> <span class="o">|</span> <span class="n">D</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And for any parent <code class="docutils literal notranslate"><span class="pre">p</span></code> at index <code class="docutils literal notranslate"><span class="pre">m</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Node</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">=</span> <span class="n">Blake2b</span><span class="p">(</span><span class="n">m</span> <span class="o">|</span> <span class="n">Node</span><span class="p">(</span><span class="n">left_child</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="o">|</span> <span class="n">Node</span><span class="p">(</span><span class="n">right_child</span><span class="p">(</span><span class="n">p</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>Contrarily to a Merkle tree, a MMR generally has no single root by
+construction so we need a method to compute one (otherwise it would
+defeat the purpose of using a hash tree). This process is called
+“bagging the peaks” for reasons described in [1].</p>
+<p>First, we identify the peaks of the MMR; we will define one method of
+doing so here. We first write another small example MMR but with the
+indexes written as binary (instead of decimal), starting from 1:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Height</span>
+
+<span class="mi">2</span>        <span class="mi">111</span>
+       <span class="o">/</span>     \
+<span class="mi">1</span>     <span class="mi">11</span>     <span class="mi">110</span>       <span class="mi">1010</span>
+     <span class="o">/</span>  \    <span class="o">/</span> \      <span class="o">/</span>    \
+<span class="mi">0</span>   <span class="mi">1</span>   <span class="mi">10</span> <span class="mi">100</span> <span class="mi">101</span>  <span class="mi">1000</span>  <span class="mi">1001</span>  <span class="mi">1011</span>
+</pre></div>
+</div>
+<p>This MMR has 11 nodes and its peaks are at position 111 (7), 1010 (10)
+and 1011 (11). We first notice how the first leftmost peak is always
+going to be the highest and always “all ones” when expressed in binary.
+Therefore that peak will have a position of the form <code class="docutils literal notranslate"><span class="pre">2^n</span> <span class="pre">-</span> <span class="pre">1</span></code> and
+will always be the largest such position that is inside the MMR (its
+position is lesser than the total size). We process iteratively for a
+MMR of size 11:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="o">^</span><span class="mi">0</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="mi">11</span>
+<span class="mi">2</span><span class="o">^</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">and</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="mi">11</span>
+<span class="mi">2</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="ow">and</span> <span class="mi">3</span> <span class="o">&lt;</span> <span class="mi">11</span>
+<span class="mi">2</span><span class="o">^</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span> <span class="ow">and</span> <span class="mi">7</span> <span class="o">&lt;</span> <span class="mi">11</span>
+<span class="mi">2</span><span class="o">^</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="ow">and</span> <span class="mi">15</span> <span class="ow">is</span> <span class="ow">not</span> <span class="o">&lt;</span> <span class="mi">11</span>
+</pre></div>
+</div>
+<p>(This can also be calculated non-iteratively as
+<code class="docutils literal notranslate"><span class="pre">2^(binary</span> <span class="pre">logarithm</span> <span class="pre">of</span> <span class="pre">size</span> <span class="pre">+</span> <span class="pre">1)</span> <span class="pre">-</span> <span class="pre">1</span></code></p>
+<p>Therefore the first peak is 7. To find the next peak, we then need to
+“jump” to its right sibling. If that node is not in the MMR (and it
+won’t), take its left child. If that child is not in the MMR either,
+keep taking its left child until we have a node that exists in our MMR.
+Once we find that next peak, keep repeating the process until we’re at
+the last node.</p>
+<p>All these operations are very simple. Jumping to the right sibling of a
+node at height <code class="docutils literal notranslate"><span class="pre">h</span></code> is adding <code class="docutils literal notranslate"><span class="pre">2^(h+1)</span> <span class="pre">-</span> <span class="pre">1</span></code> to its position. Taking
+its left child is subtracting <code class="docutils literal notranslate"><span class="pre">2^h</span></code>.</p>
+<p>Finally, once all the positions of the peaks are known, “bagging” the
+peaks consists of hashing them iteratively from the right, using the
+total size of the MMR as prefix. For a MMR of size N with 3 peaks p1, p2
+and p3 we get the final top peak:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">Blake2b</span><span class="p">(</span><span class="n">N</span> <span class="o">|</span> <span class="n">Blake2b</span><span class="p">(</span><span class="n">N</span> <span class="o">|</span> <span class="n">Node</span><span class="p">(</span><span class="n">p3</span><span class="p">)</span> <span class="o">|</span> <span class="n">Node</span><span class="p">(</span><span class="n">p2</span><span class="p">))</span> <span class="o">|</span> <span class="n">Node</span><span class="p">(</span><span class="n">p1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pruning">
+<h2>Pruning<a class="headerlink" href="#pruning" title="Link permanente para este título">¶</a></h2>
+<p>In Grin, a lot of the data that gets hashed and stored in MMRs can
+eventually be removed. As this happens, the presence of some leaf hashes
+in the corresponding MMRs become unnecessary and their hash can be
+removed. When enough leaves are removed, the presence of their parents
+may become unnecessary as well. We can therefore prune a significant
+part of a MMR from the removal of its leaves.</p>
+<p>Pruning a MMR relies on a simple iterative process. <code class="docutils literal notranslate"><span class="pre">X</span></code> is first
+initialized as the leaf we wish to prune.</p>
+<ol class="arabic simple">
+<li><p>Prune <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">X</span></code> has a sibling, stop here.</p></li>
+<li><p>If ‘X’ has no sibling, assign the parent of <code class="docutils literal notranslate"><span class="pre">X</span></code> as <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p></li>
+</ol>
+<p>To visualize the result, starting from our first MMR example and
+removing leaves [0, 3, 4, 8, 16] leads to the following pruned MMR:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Height</span>
+
+<span class="mi">3</span>             <span class="mi">14</span>
+            <span class="o">/</span>    \
+           <span class="o">/</span>      \
+          <span class="o">/</span>        \
+         <span class="o">/</span>          \
+<span class="mi">2</span>       <span class="mi">6</span>            <span class="mi">13</span>
+       <span class="o">/</span>            <span class="o">/</span>   \
+<span class="mi">1</span>     <span class="mi">2</span>            <span class="mi">9</span>     <span class="mi">12</span>     <span class="mi">17</span>
+       \          <span class="o">/</span>     <span class="o">/</span>  \   <span class="o">/</span>
+<span class="mi">0</span>       <span class="mi">1</span>        <span class="mi">7</span>     <span class="mi">10</span>  <span class="mi">11</span> <span class="mi">15</span>     <span class="mi">18</span>
+</pre></div>
+</div>
+<p>[1] Peter Todd,
+<a class="reference external" href="https://github.com/opentimestamps/opentimestamps-server/blob/master/doc/merkle-mountain-range.md">merkle-mountain-range</a></p>
+<p>[2] <a class="reference external" href="https://en.wikipedia.org/wiki/Merkle_tree">Wikipedia, Merkle
+Tree</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="merkle-proof.html" class="btn btn-neutral float-right" title="Merkle Proof" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Building Blocks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Grin Developers
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book fa-element"> RTD </span>
+
+    <span class="fa fa-v fa-element"> v:  <span class="fa fa-caret-down"></span></span>
+
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Versions</dt> 
+        </dl>
+        <dl>
+            <dt>Downloads</dt> 
+        </dl>
+        <dl>
+            
+            <dt>On Read the Docs</dt>
+            <dd>
+                <a href="///projects//?fromdocs=">Project Home</a>
+            </dd>
+            <dd>
+                <a href="///builds//?fromdocs=">Builds</a>
+            </dd>
+        </dl>
+    </div>
+</div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
