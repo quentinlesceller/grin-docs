@@ -14,7 +14,6 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/toggle.css" type="text/css" />
 
   
   
@@ -32,13 +31,14 @@
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/js/toggle.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="State and Storage" href="state-and-storage.html" />
+    <link rel="prev" title="Grin’s Proof-of-Work" href="proof-of-work.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -89,16 +89,23 @@
 <li class="toctree-l1"><a class="reference internal" href="../../integration/index.html">Integration</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Technical Details</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../table-of-contents.html">Table of Contents</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../introduction-to-mimblewimble.html">Technical Introduction to Mimblewimble</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../grin-for-bitcoiners.html">Grin for Bitcoiners</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building-blocks/index.html">Building Blocks</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Blockchain and Consensus</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="coinbase-maturity-rule.html">Coinbase Maturity Rule (aka Output Lock Heights)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fast-sync.html">Fast Sync</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proof-of-work.html">Grin’s Proof-of-Work</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Pruning Blockchain Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#validation-of-fully-pruned-state">Validation of Fully Pruned State</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Building Blocks</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../building-blocks/merkle-mountain-ranges.html">Merkle Mountain Ranges</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../building-blocks/merkle-proof.html">Merkle Proof</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../building-blocks/switch-commitments.html">Introduction to Switch Commitments</a></li>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="state-and-storage.html">State and Storage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/index.html">Miscellaneous</a></li>
 </ul>
 
             
@@ -146,6 +153,8 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Blockchain and Consensus</a> &raquo;</li>
         
       <li>Pruning Blockchain Data</li>
     
@@ -261,6 +270,15 @@ node.</p>
           </div>
           <footer>
   
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="state-and-storage.html" class="btn btn-neutral float-right" title="State and Storage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="proof-of-work.html" class="btn btn-neutral float-left" title="Grin’s Proof-of-Work" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
 
   <hr/>
 
@@ -292,11 +310,6 @@ node.</p>
 <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book fa-element"> RTD </span>
-
-    <span class="fa fa-element">
-    <input class="container_toggle" type="checkbox" id="switch" name="mode">
-    <label for="switch"></label>
-    </span>
 
     <span class="fa fa-v fa-element"> v:  <span class="fa fa-caret-down"></span></span>
 

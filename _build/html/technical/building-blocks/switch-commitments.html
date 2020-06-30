@@ -14,7 +14,6 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/css/toggle.css" type="text/css" />
 
   
   
@@ -32,13 +31,13 @@
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
-        <script src="../../_static/js/toggle.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Blockchain and Consensus" href="../blockchain-and-consensus/index.html" />
     <link rel="prev" title="Merkle Proof" href="merkle-proof.html" /> 
 </head>
 
@@ -90,42 +89,38 @@
 <li class="toctree-l1"><a class="reference internal" href="../../integration/index.html">Integration</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Technical Details</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../table-of-contents.html">Table of Contents</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../introduction-to-mimblewimble.html">Technical Introduction to Mimblewimble</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../grin-for-bitcoiners.html">Grin for Bitcoiners</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Building Blocks</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="merkle-mountain-ranges.html">Merkle Mountain Ranges</a></li>
-<li class="toctree-l1"><a class="reference internal" href="merkle-proof.html">Merkle Proof</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to Switch Commitments</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#general-introduction">General introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#hash-commitment">Hash Commitment</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pedersen-commitment">Pedersen Commitment</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Building Blocks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="merkle-mountain-ranges.html">Merkle Mountain Ranges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="merkle-proof.html">Merkle Proof</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Introduction to Switch Commitments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-introduction">General introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hash-commitment">Hash Commitment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pedersen-commitment">Pedersen Commitment</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#properties-of-commitment-schemes">Properties of commitment schemes:</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#security-of-these-properties">Security of these properties:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mutual-exclusivity">Mutual exclusivity:</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#always-a-compromise">Always a compromise</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#properties-of-commitment-schemes">Properties of commitment schemes:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#security-of-these-properties">Security of these properties:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mutual-exclusivity">Mutual exclusivity:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#considerations-for-cryptocurrencies">Considerations for cryptocurrencies</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#considerations-for-cryptocurrencies">Considerations for cryptocurrencies</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#a-hard-choice">A hard choice?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#properties-of-pedersen-commitments">Properties of Pedersen Commitments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#introducing-switch-commitments">Introducing Switch Commitments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#how-does-this-work-in-detail">How does this work in detail</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#properties-of-pedersen-commitments">Properties of Pedersen Commitments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#introducing-switch-commitments">Introducing Switch Commitments</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#how-does-this-work-in-detail">How does this work in detail</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#conclusion">Conclusion</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../blockchain-and-consensus/index.html">Blockchain and Consensus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/index.html">Miscellaneous</a></li>
 </ul>
 
             
@@ -173,6 +168,8 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Building Blocks</a> &raquo;</li>
         
       <li>Introduction to Switch Commitments</li>
     
@@ -496,6 +493,8 @@ bindingness of Pedersen commitments ever breaks unexpectedly.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../blockchain-and-consensus/index.html" class="btn btn-neutral float-right" title="Blockchain and Consensus" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
       
         <a href="merkle-proof.html" class="btn btn-neutral float-left" title="Merkle Proof" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
@@ -532,11 +531,6 @@ bindingness of Pedersen commitments ever breaks unexpectedly.</p>
 <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book fa-element"> RTD </span>
-
-    <span class="fa fa-element">
-    <input class="container_toggle" type="checkbox" id="switch" name="mode">
-    <label for="switch"></label>
-    </span>
 
     <span class="fa fa-v fa-element"> v:  <span class="fa fa-caret-down"></span></span>
 

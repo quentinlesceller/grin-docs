@@ -51,15 +51,15 @@ This section contains various documents about Grin and Mimblewimble.
 
 .. _doc.rs: https://docs.rs/releases/search?query=grin
 .. _Introduction to Mimblewimble: introduction-to-mimblewimble.html
-.. _Grin For Bitcoiners: grin-for-bitcoiners.md
-.. _Merkle Mountain Ranges: building-blocks/merkle-mountain-ranges.md
-.. _Merkle Proof: building-blocks/merkle-proof.md
-.. _Switch Commitments: building-blocks/switch-commitments.md
-.. _Coinbase Maturity Rule: blockchain-and-consensus/coinbase-maturity-rule.md
-.. _Fast Sync: blockchain-and-consensus/fast-sync.md
-.. _Proof-of-Work: blockchain-and-consensus/proof-of-work.md
-.. _Pruning Blockchain Data: blockchain-and-consensus/pruning-blockchain-data.md
-.. _State and Storage: blockchain-and-consensus/state-and-storage.md
-.. _Contracts: miscellaneous/contracts.md
-.. _Dandelion: miscellaneous/dandelion.md
-.. _Range Proof Format: miscellaneous/range-proof-format.md
+.. _Grin For Bitcoiners: grin-for-bitcoiners.html
+.. _Merkle Mountain Ranges: building-blocks/merkle-mountain-ranges.html
+.. _Merkle Proof: building-blocks/merkle-proof.html
+.. _Switch Commitments: building-blocks/switch-commitments.html
+.. _Coinbase Maturity Rule: blockchain-and-consensus/coinbase-maturity-rule.html
+.. _Fast Sync: blockchain-and-consensus/fast-sync.html
+.. _Proof-of-Work: blockchain-and-consensus/proof-of-work.html
+.. _Pruning Blockchain Data: blockchain-and-consensus/pruning-blockchain-data.html
+.. _State and Storage: blockchain-and-consensus/state-and-storage.html
+.. _Contracts: miscellaneous/contracts.html
+.. _Dandelion: miscellaneous/dandelion.html
+.. _Range Proof Format: miscellaneous/range-proof-format.html
