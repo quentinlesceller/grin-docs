@@ -17,7 +17,7 @@
         <meta name="author" content="Grin Developers">
       
       <link rel="shortcut icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.3.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
     
     
       
@@ -250,8 +250,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../getting-started/" title="Getting started" class="md-nav__link">
-      Getting started
+    <a href="../../../quickstart/" title="Quickstart" class="md-nav__link">
+      Quickstart
     </a>
   </li>
 
@@ -953,14 +953,14 @@
 <h3 id="original-dandelion">Original Dandelion</h3>
 <p>In the original paper [2], a <strong>dandelion spreading protocol</strong> is introduced. Dandelion spreading propagation consists of two phases: first the anonymity phase, or the <strong>“stem”</strong> phase, and second the spreading phase, or the <strong>“fluff”</strong> phase, as illustrated in Figure 1. </p>
 <p><strong>Figure 1.</strong> Dandelion phase illustration.</p>
-<pre><code>                                                   ┌-&gt; F ...
+<div class="highlight"><pre><span></span><code>                                                   ┌-&gt; F ...
                                            ┌-&gt; D --┤
                                            |       └-&gt; G ...
   A --[stem]--&gt; B --[stem]--&gt; C --[fluff]--┤
                                            |       ┌-&gt; H ...
                                            └-&gt; E --┤
                                                    └-&gt; I ...
-</code></pre>
+</code></pre></div>
 
 <p>In the initial <strong>stem-phase</strong>, each node relays the transaction to a <em>single randomly selected peer</em>, constructing a line graph. Users then forward transactions along the <em>same</em> path on the graph. After a random number of hops along the single stem, the transaction enters the <strong>fluff-phase</strong>, which behaves like ordinary diffusion. This means that even when an attacker can identify the originator of the fluff phase, it becomes more difficult to identify the source of the stem (and thus the original broadcaster of the transaction). The constructed line graph is periodically re-generated randomly, at the expiry of each <em>epoch</em>, limiting an adversary's possibility to build knowledge of graph. Epochs are asynchronous, with each individual node keeping its own internal clock and starting a new epoch once a certain threshold has been reached.   </p>
 <p>The 'dandelion' name is derived from how the protocol resembles the spreading of the seeds of a dandelion.</p>
@@ -1008,17 +1008,16 @@
 <p>As with the original Dandelion protocol epochs are asynchronous, each node keeping track of its own epoch, which the suggested duration being in the order of 10 minutes.</p>
 <h5 id="1-anonymity-graph">1. Anonymity Graph</h5>
 <p>Rather than a line graph as per the original paper (which is 2-regular), a <em>quasi-4-regular graph</em> (Figure 2) is constructed by a node at the beginning of each epoch: the node chooses (up to) two of its outbound edges uniformly at random as its <em>dandelion++ relays</em>. As a node enters into a new epoch, new dandelion++ relays are chosen.</p>
-<p><strong>Figure 2.</strong> A 4-regular graph.</p>
-<pre><code>in1        out1
+<p><strong>Figure 2.</strong> A 4-regular graph.
+<div class="highlight"><pre><span></span><code>in1        out1
   \       /
    \     /
     NodeX
    /     \
   /       \
 in2        out2
-</code></pre>
-
-<p><em><code>NodeX</code> has four connections to other nodes, input nodes <code>in1</code> and <code>in2</code>, and output nodes <code>out1</code> and <code>out2</code>.</em></p>
+</code></pre></div>
+<em><code>NodeX</code> has four connections to other nodes, input nodes <code>in1</code> and <code>in2</code>, and output nodes <code>out1</code> and <code>out2</code>.</em></p>
 <p><strong><em>Note on using 4-regular vs 2-regular graphs</em></strong></p>
 <p>The choice between using 4-regular or 2-regular (line) graphs is not obvious. The authors note that it is difficult to construct an exact 4-regular graph within a fully-distributed network in practice. They outline a method to construct an approximate 4-regular graph in the paper. They also write:</p>
 <blockquote>
@@ -1050,8 +1049,8 @@ the time between each hop (e.g., network and/or internal node latency), transact
 <li><strong>Act as a countermeasure against mass de-anonymization attacks.</strong> Similar to Bitcoin, the Grin P2P network would be vulnerable to attackers deploying malicious "super-nodes" connecting to most peers on the network and monitoring transactions as they become diffused by their honest peers. This would allow a motivated actor to infer with a high degree of probability from which peer (IP address) transactions originate from, having negative privacy consequences.</li>
 <li><strong>Aggregate transactions before they are being broadcasted to the entire network.</strong> This is a benefit to blockchains that enable non-interactive CoinJoins on the protocol level, such as Mimblewimble. Despite its good privacy features, some input and output linking is still possible in Mimblewimble and Grin.[4] If you know which input spends to which output, it is possible to construct a (very limited) transaction graph and follow a chain of transaction outputs (TXOs) as they are being spent. Aggregating transactions make this more difficult to carry out, as it becomes less clear which input spends to which output (Figure 3). In order for this to be effective, there needs to be a large anonymity set, i.e. many transactions to aggregate a transaction with. Dandelion enables this aggregation to occur before transactions are fluffed and diffused to the entire network. This adds obfuscation to the transaction graph, as a malicious observer who is not participating in the stemming or fluffing would not only need to figure out from where a transaction originated, but also which TXOs out of a larger group should be attributed to the originating transaction.</li>
 </ol>
-<p><strong>Figure 3.</strong> Aggregating transactions</p>
-<pre><code>3.1 Transactions (not aggregated)
+<p><strong>Figure 3.</strong> Aggregating transactions
+<div class="highlight"><pre><span></span><code>3.1 Transactions (not aggregated)
 ---------------------------------------------
 TX1     INPUT_A ______________ OUTPUT_X
                         |_____ OUTPUT_Y
@@ -1073,8 +1072,7 @@ TX1+2   INPUT_A ______________ OUTPUT_X
                         KERNEL 1
                         KERNEL 2
 ---------------------------------------------
-</code></pre>
-
+</code></pre></div></p>
 <h3 id="current-implementation">Current implementation</h3>
 <p>Grin implements a simplified version of the Dandelion++ protocol. It's been improved several times, most recently in version 1.1.0 [5].</p>
 <ol>
@@ -1211,14 +1209,14 @@ TX1+2   INPUT_A ______________ OUTPUT_X
     </div>
     
       <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.4a5ba8d6.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "../../..",
           features: ["tabs"],
           search: Object.assign({
-            worker: "../../../assets/javascripts/worker/search.9b3611bd.min.js"
+            worker: "../../../assets/javascripts/worker/search.a68abb33.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
