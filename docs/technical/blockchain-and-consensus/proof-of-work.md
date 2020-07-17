@@ -6,7 +6,7 @@
     Alongside, a dual pow scheme was designed to ensure a fair initial coin distribution.
 
 
-    You can read more about this [here](https://blog.blockcypher.com/an-introduction-to-grin-proof-of-work).
+    You can read more about this [here](https://blog.blockcypher.com/an-introduction-to-grin-proof-of-work-103aaa9f66ce).
 
 This document is meant to outline, at a level suitable for someone without prior knowledge,
 the algorithms and processes currently involved in Grin's Proof-of-Work system. We'll start
