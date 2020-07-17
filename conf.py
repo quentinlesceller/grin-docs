@@ -48,7 +48,7 @@ copyright = u'2020, Grin Developers'
 author = u'Grin Developers'
 
 # The short X.Y version
-version = u''
+version = u'4.0.0'
 # The full version, including alpha/beta/rc tags
 release = u'v4.0.0'
 
