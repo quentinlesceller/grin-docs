@@ -17,7 +17,7 @@
         <meta name="author" content="Grin Developers">
       
       <link rel="shortcut icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.3.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
     
     
       
@@ -250,8 +250,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../getting-started/" title="Getting started" class="md-nav__link">
-      Getting started
+    <a href="../../../quickstart/" title="Quickstart" class="md-nav__link">
+      Quickstart
     </a>
   </li>
 
@@ -944,8 +944,10 @@ commitment and the time of revealing.</p>
 <p>A simple commitment scheme can be realized with a cryptographic hash function. For example: Alice and Bob
 want to play <em>"Guess my number"</em> and Alice comes up with with her really secret number <code>29</code> which
 Bob has to guess in the game, then before the game starts, Alice calculates:</p>
-<pre><code>hash( 29 + r )
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">hash( 29 + r )</span>
+</code></pre></div>
+
+
 <p>and publishes the result to Bob. The <code>r</code> is a randomly chosen  <em>Blinding Factor</em> which is
 needed because otherwise Bob could just try hashing all the possible numbers for the game and
 compare the hashes.</p>
@@ -1074,8 +1076,10 @@ scheme similiar to Pedersen Commitments and it's <em>perfectly binding</em> (but
 hiding</em> as we can never have both).
 It looks very similar to a Pedersen Commitment, with the addition of a new
 element, calculated by multiplying the blinding factor <code>r</code> with another generator point <code>J</code>:</p>
-<pre><code>v*H + r*G ,  r*J
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">v*H + r*G ,  r*J</span>
+</code></pre></div>
+
+
 <p>So if we store the additional field <code>r*J</code> and ignore it for now, we can treat it like
 Pedersen Commitments, until we decide to also validate the full ElGamal
 commitment at some time in future. This is exactly what was implemented in an
@@ -1089,17 +1093,23 @@ the burden of increasing the size of each output by 32 bytes.</p>
 need this extra storage of an additional element per transaction output:</p>
 <p>The idea is the following:</p>
 <p>A normal Pedersen commitment looks like this:</p>
-<pre><code>v*H + r*G
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">v*H + r*G</span>
+</code></pre></div>
+
+
 <p>(<code>v</code> is value of the input/output, <code>r</code> is a truly random blinding factor, and <code>H</code> and <code>G</code> are
 two generator points on the elliptic curve).</p>
 <p>If we adapt this by having <code>r</code> not being random itself, but using another random number <code>r'</code>
 and create the Pedersen Commitment:</p>
-<pre><code>v*H + r*G
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">v*H + r*G</span>
+</code></pre></div>
+
+
 <p>such that:</p>
-<pre><code>r = r' + hash( v*H + r'*G  ,  r'*J )
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">r = r&#39; + hash( v*H + r&#39;*G  ,  r&#39;*J )</span>
+</code></pre></div>
+
+
 <p>(using the additional third generation point <code>J</code> on the curve) then <code>r</code> still is perfectly
 valid as a blinding factor, as it's still randomly distributed, but now we see
 that the part within the brackets of the hash function (<code>v*H + r'*G  ,  r'*J</code>) is an
@@ -1243,14 +1253,14 @@ commitments ever breaks unexpectedly.</p>
     </div>
     
       <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.4a5ba8d6.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "../../..",
           features: ["tabs"],
           search: Object.assign({
-            worker: "../../../assets/javascripts/worker/search.9b3611bd.min.js"
+            worker: "../../../assets/javascripts/worker/search.a68abb33.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>

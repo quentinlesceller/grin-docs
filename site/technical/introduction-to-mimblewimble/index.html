@@ -17,7 +17,7 @@
         <meta name="author" content="Grin Developers">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.3.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
     
     
       
@@ -250,8 +250,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../getting-started/" title="Getting started" class="md-nav__link">
-      Getting started
+    <a href="../../quickstart/" title="Quickstart" class="md-nav__link">
+      Quickstart
     </a>
   </li>
 
@@ -382,17 +382,16 @@
     Tongue Tying for Everyone
   </a>
   
-    <nav class="md-nav" aria-label="Tongue Tying for Everyone">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tiny-bits-of-elliptic-curves" class="md-nav__link">
     Tiny Bits of Elliptic Curves
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#transacting-with-mimblewimble" class="md-nav__link">
     Transacting with Mimblewimble
   </a>
@@ -452,8 +451,8 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#blocks-and-chain-state" class="md-nav__link">
     Blocks and Chain State
   </a>
@@ -466,18 +465,12 @@
     Transaction Aggregation
   </a>
   
-    <nav class="md-nav" aria-label="Transaction Aggregation">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#kernel-offsets" class="md-nav__link">
     Kernel Offsets
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -499,16 +492,11 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#conclusion" class="md-nav__link">
     Conclusion
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -788,17 +776,16 @@
     Tongue Tying for Everyone
   </a>
   
-    <nav class="md-nav" aria-label="Tongue Tying for Everyone">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tiny-bits-of-elliptic-curves" class="md-nav__link">
     Tiny Bits of Elliptic Curves
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#transacting-with-mimblewimble" class="md-nav__link">
     Transacting with Mimblewimble
   </a>
@@ -858,8 +845,8 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#blocks-and-chain-state" class="md-nav__link">
     Blocks and Chain State
   </a>
@@ -872,18 +859,12 @@
     Transaction Aggregation
   </a>
   
-    <nav class="md-nav" aria-label="Transaction Aggregation">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#kernel-offsets" class="md-nav__link">
     Kernel Offsets
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -905,16 +886,11 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#conclusion" class="md-nav__link">
     Conclusion
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -950,7 +926,7 @@ understanding of Grin as a Mimblewimble implementation. We will start with a bri
 description of some relevant properties of Elliptic Curve Cryptography (ECC) to lay the
 foundation on which Grin is based and then describe all the key elements of a
 Mimblewimble blockchain's transactions and blocks.</p>
-<h3 id="tiny-bits-of-elliptic-curves">Tiny Bits of Elliptic Curves</h3>
+<h2 id="tiny-bits-of-elliptic-curves">Tiny Bits of Elliptic Curves</h2>
 <p>We start with a brief primer on Elliptic Curve Cryptography, reviewing just the
 properties necessary to understand how Mimblewimble works and without
 delving too much into the intricacies of ECC. For readers who would want to
@@ -963,8 +939,10 @@ using the scalar multiplication operation we can compute <code>k*H</code>, which
 curve <em>C</em>. Given another integer <em>j</em> we can also calculate <code>(k+j)*H</code>, which equals
 <code>k*H + j*H</code>. The addition and scalar multiplication operations on an elliptic curve
 maintain the commutative and associative properties of addition and multiplication:</p>
-<pre><code>(k+j)*H = k*H + j*H
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">(k+j)*H = k*H + j*H</span>
+</code></pre></div>
+
+
 <p>In ECC, if we pick a very large number <em>k</em> as a private key, <code>k*H</code> is
 considered the corresponding public key. Even if one knows the
 value of the public key <code>k*H</code>, deducing <em>k</em> is close to impossible (or said
@@ -976,7 +954,7 @@ keys (<code>(k+j)*H</code>) is identical to the addition of the public keys for 
 two private keys (<code>k*H + j*H</code>). In the Bitcoin blockchain, Hierarchical
 Deterministic wallets heavily rely on this principle. Mimblewimble and the Grin
 implementation do as well.</p>
-<h3 id="transacting-with-mimblewimble">Transacting with Mimblewimble</h3>
+<h2 id="transacting-with-mimblewimble">Transacting with Mimblewimble</h2>
 <p>The structure of transactions demonstrates a crucial tenet of Mimblewimble:
 strong privacy and confidentiality guarantees.</p>
 <p>The validation of Mimblewimble transactions relies on two basic properties:</p>
@@ -990,15 +968,17 @@ strong privacy and confidentiality guarantees.</p>
 </ul>
 <p>The next sections on balance, ownership, change and proofs details how those two
 fundamental properties are achieved.</p>
-<h4 id="balance">Balance</h4>
+<h3 id="balance">Balance</h3>
 <p>Building upon the properties of ECC we described above, one can obscure the values
 in a transaction.</p>
 <p>If <em>v</em> is the value of a transaction input or output and <em>H</em> a point on the elliptic curve <em>C</em>, we can simply 
 embed <code>v*H</code> instead of <em>v</em> in a transaction. This works because using the ECC
 operations, we can still validate that the sum of the outputs of a transaction equals the
 sum of inputs:</p>
-<pre><code>v1 + v2 = v3  =&gt;  v1*H + v2*H = v3*H
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">v1 + v2 = v3  =&gt;  v1*H + v2*H = v3*H</span>
+</code></pre></div>
+
+
 <p>Verifying this property on every transaction allows the protocol to verify that a
 transaction doesn't create money out of thin air, without knowing what the actual
 values are. However, there are a finite number of usable values (transaction amounts) and one 
@@ -1009,8 +989,10 @@ value <em>v1</em> across the blockchain. For these reasons, we introduce a secon
 (practically <em>G</em> is just another generator point on the same curve group as <em>H</em>) and
 a private key <em>r</em> used as a <em>blinding factor</em>.</p>
 <p>An input or output value in a transaction can then be expressed as:</p>
-<pre><code>r*G + v*H
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">r*G + v*H</span>
+</code></pre></div>
+
+
 <p>Where:</p>
 <ul>
 <li><em>r</em> is a private key used as a blinding factor, <em>G</em> is a point on the elliptic curve <em>C</em> and
@@ -1027,15 +1009,21 @@ output. We have (ignoring fees):</p>
 <li><em>vo3</em> as output value.</li>
 </ul>
 <p>Such that:</p>
-<pre><code>vi1 + vi2 = vo3
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">vi1 + vi2 = vo3</span>
+</code></pre></div>
+
+
 <p>Generating a private key as a blinding factor for each input value and replacing each value
 with their respective Pedersen Commitments in the previous equation, we obtain:</p>
-<pre><code>(ri1*G + vi1*H) + (ri2*G + vi2*H) = (ro3*G + vo3*H)
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">(ri1*G + vi1*H) + (ri2*G + vi2*H) = (ro3*G + vo3*H)</span>
+</code></pre></div>
+
+
 <p>Which as a consequence requires that:</p>
-<pre><code>ri1 + ri2 = ro3
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">ri1 + ri2 = ro3</span>
+</code></pre></div>
+
+
 <p>This is the first pillar of Mimblewimble: the arithmetic required to validate a
 transaction can be done without knowing any of the values.</p>
 <p>As a final note, this idea is actually derived from Greg Maxwell's
@@ -1043,7 +1031,7 @@ transaction can be done without knowing any of the values.</p>
 which is itself derived from an 
 <a href="https://bitcointalk.org/index.php?topic=305791.0">Adam Back proposal for homomorphic values</a> 
 applied to Bitcoin.</p>
-<h4 id="ownership">Ownership</h4>
+<h3 id="ownership">Ownership</h3>
 <p>In the previous section we introduced a private key as a blinding factor to obscure the
 transaction's values. The second insight of Mimblewimble is that this private
 key can be leveraged to prove ownership of the value.</p>
@@ -1051,21 +1039,27 @@ key can be leveraged to prove ownership of the value.</p>
 blinding factor (note that in practice, the blinding factor being a private key, it's an
 extremely large number). Somewhere on the blockchain, the following output appears and
 should only be spendable by you:</p>
-<pre><code>X = 28*G + 3*H
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">X = 28*G + 3*H</span>
+</code></pre></div>
+
+
 <p><em>X</em>, the result of the addition, is visible by everyone. The value 3 is only known to you and Alice,
 and 28 is only known to you.</p>
 <p>To transfer those 3 coins again, the protocol requires 28 to be known somehow.
 To demonstrate how this works, let's say you want to transfer those 3 same coins to Carol.
 You need to build a simple transaction such that:</p>
-<pre><code>Xi =&gt; Y
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">Xi =&gt; Y</span>
+</code></pre></div>
+
+
 <p>Where <em>Xi</em> is an input that spends your <em>X</em> output and <em>Y</em> is Carol's output. There is no way to build
 such a transaction and balance it without knowing your private key of 28. Indeed, if Carol
 is to balance this transaction, she needs to know both the value sent and your private key
 so that:</p>
-<pre><code>Y - Xi = (28*G + 3*H) - (28*G + 3*H) = 0*G + 0*H
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">Y - Xi = (28*G + 3*H) - (28*G + 3*H) = 0*G + 0*H</span>
+</code></pre></div>
+
+
 <p>By checking that everything has been zeroed out, we can again make sure that
 no new money has been created.</p>
 <p>Wait! Stop! Now you know the private key in Carol's output (which, in this case, must
@@ -1073,8 +1067,10 @@ be the same as yours to balance out) and so you could
 steal the money back from Carol!</p>
 <p>To solve this, Carol uses a private key of her choosing.
 She picks 113 say, and what ends up on the blockchain is:</p>
-<pre><code>Y - Xi = (113*G + 3*H) - (28*G + 3*H) = 85*G + 0*H
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">Y - Xi = (113*G + 3*H) - (28*G + 3*H) = 85*G + 0*H</span>
+</code></pre></div>
+
+
 <p>Now the transaction no longer sums to zero and we have an <em>excess value</em> (85), which is the result of the summation of all blinding factors. Because <code>85*G</code> is
 a valid public key for the generator point <em>G</em> the input and output values must sum to zero and the transaction is thus valid, since <code>x*G + y*H</code> is a valid public key for generator point <em>G</em> if and only if <code>y = 0</code>.</p>
 <p>So all the protocol needs to verify is that (<code>Y - Xi</code>) is a valid public key for generator point <em>G</em> 
@@ -1086,25 +1082,29 @@ which then ensures that:</p>
 </ul>
 <p>This signature, attached to every transaction, together with some additional data (like mining
 fees), is called a <em>transaction kernel</em> and is checked by all validators.</p>
-<h4 id="some-finer-points">Some Finer Points</h4>
+<h3 id="some-finer-points">Some Finer Points</h3>
 <p>This section elaborates on the building of transactions by discussing how change is
 introduced and the requirement for range proofs so all values are proven to be
 non-negative. Neither of these are absolutely required to understand Mimblewimble and
 Grin, so if you're in a hurry, feel free to jump straight to
 <a href="#putting-it-all-together">Putting It All Together</a>.</p>
-<h5 id="change">Change</h5>
+<h4 id="change">Change</h4>
 <p>Let's say you only want to send 2 coins to Carol from the 3 you received from
 Alice. To do this you would send the remaining 1 coin back to yourself as change.
 You generate another private key (say 12) as a blinding factor to
 protect your change output. Carol uses her own private key as before.</p>
-<pre><code>Change output:     12*G + 1*H
-Carol's output:    113*G + 2*H
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">Change output:     12*G + 1*H</span>
+<span class="err">Carol&#39;s output:    113*G + 2*H</span>
+</code></pre></div>
+
+
 <p>What ends up on the blockchain is something very similar to before.
 And the signature is again built with the excess value, 97 in this example.</p>
-<pre><code>(12*G + 1*H) + (113*G + 2*H) - (28*G + 3*H) = 97*G + 0*H
-</code></pre>
-<h5 id="range-proofs">Range Proofs</h5>
+<div class="codehilite"><pre><span></span><code><span class="err">(12*G + 1*H) + (113*G + 2*H) - (28*G + 3*H) = 97*G + 0*H</span>
+</code></pre></div>
+
+
+<h4 id="range-proofs">Range Proofs</h4>
 <p>In all the above calculations, we rely on the transaction values to always be positive. The
 introduction of negative amounts would be extremely problematic as one could
 create new funds in every transaction.</p>
@@ -1120,16 +1120,20 @@ zero and does not overflow.</p>
 <p>It's also important to note that range proofs for both the blinding factor and the values are needed. The reason for this
 is that it prevents a censoring attack where a third party would be able to lock UTXOs without knowing their private keys
 by creating a transaction such as the following:</p>
-<pre><code>Carol's UTXO:      113*G + 2*H
-Attacker's output: (113 + 99)*G + 2*H
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">Carol&#39;s UTXO:      113*G + 2*H</span>
+<span class="err">Attacker&#39;s output: (113 + 99)*G + 2*H</span>
+</code></pre></div>
+
+
 <p>which can be signed by the attacker because Carol's blinding factor cancels out in the equation <code>Y - Xi</code>:</p>
-<pre><code>Y - Xi = ((113 + 99)*G + 2*H) - (113*G + 2*H) =  99*G
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">Y - Xi = ((113 + 99)*G + 2*H) - (113*G + 2*H) =  99*G</span>
+</code></pre></div>
+
+
 <p>This output (<code>(113 + 99)*G + 2*H</code>) requires that both the numbers 113 and 99 are known in order to be spent; the attacker
 would thus have successfully locked Carol's UTXO. The requirement for a range proof for the blinding factor prevents this
 because the attacker doesn't know the number 113 and thus neither (113 + 99). A more detailed description of range proofs is further detailed in the <a href="https://eprint.iacr.org/2017/1066.pdf">range proof paper</a>.</p>
-<h4 id="putting-it-all-together">Putting It All Together</h4>
+<h3 id="putting-it-all-together">Putting It All Together</h3>
 <p>A Mimblewimble transaction includes the following:</p>
 <ul>
 <li>A set of inputs, that reference and spend a set of previous outputs.</li>
@@ -1141,7 +1145,7 @@ because the attacker doesn't know the number 113 and thus neither (113 + 99). A 
 <li>A signature whose private key is computed by taking the excess value (the sum of all
   output values plus the fee, minus the input values).</li>
 </ul>
-<h3 id="blocks-and-chain-state">Blocks and Chain State</h3>
+<h2 id="blocks-and-chain-state">Blocks and Chain State</h2>
 <p>We explained above how Mimblewimble transactions can provide
 strong anonymity guarantees while maintaining the properties required for a valid
 blockchain, i.e., a transaction does not create money and proof of ownership
@@ -1153,7 +1157,7 @@ concept: <em>cut-through</em>. With this addition, a Mimblewimble chain gains:</
   eliminated over time, without compromising security.</li>
 <li>Further anonymity by mixing and removing transaction data.</li>
 </ul>
-<h4 id="transaction-aggregation">Transaction Aggregation</h4>
+<h3 id="transaction-aggregation">Transaction Aggregation</h3>
 <p>Recall that a transaction consists of the following:</p>
 <ul>
 <li>a set of inputs that reference and spent a set of previous outputs</li>
@@ -1163,55 +1167,77 @@ concept: <em>cut-through</em>. With this addition, a Mimblewimble chain gains:</
 <li>transaction signature whose public key is the kernel excess</li>
 </ul>
 <p>A transaction is validated by determining that the kernel excess is a valid public key:</p>
-<pre><code>(42*G + 1*H) + (99*G + 2*H) - (113*G + 3*H) = 28*G + 0*H
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">(42*G + 1*H) + (99*G + 2*H) - (113*G + 3*H) = 28*G + 0*H</span>
+</code></pre></div>
+
+
 <p>The public key in this example is <code>28*G</code>.</p>
 <p>We can say the following is true for any valid transaction (ignoring fees for simplicity):</p>
-<pre><code>sum(outputs) - sum(inputs) = kernel_excess
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">sum(outputs) - sum(inputs) = kernel_excess</span>
+</code></pre></div>
+
+
 <p>The same holds true for blocks themselves once we realize a block is simply a set of aggregated inputs, outputs and transaction kernels. We can sum the outputs, subtract the inputs from it and equating the resulting Pedersen commitment to the sum of the kernel excesses:</p>
-<pre><code>sum(outputs) - sum(inputs) = sum(kernel_excess)
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">sum(outputs) - sum(inputs) = sum(kernel_excess)</span>
+</code></pre></div>
+
+
 <p>Simplifying slightly, (again ignoring transaction fees) we can say that Mimblewimble blocks can be treated exactly as Mimblewimble transactions.</p>
-<h5 id="kernel-offsets">Kernel Offsets</h5>
+<h3 id="kernel-offsets">Kernel Offsets</h3>
 <p>There is a subtle problem with Mimblewimble blocks and transactions as described above. It is possible (and in some cases trivial) to reconstruct the constituent transactions in a block. This is clearly bad for privacy. This is the "subset" problem: given a set of inputs, outputs, and transaction kernels a subset of these will recombine to reconstruct a valid transaction.</p>
 <p>Consider the following two transactions:</p>
-<pre><code>(in1, in2) -&gt; (out1), (kern1)
-(in3) -&gt; (out2), (kern2)
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">(in1, in2) -&gt; (out1), (kern1)</span>
+<span class="err">(in3) -&gt; (out2), (kern2)</span>
+</code></pre></div>
+
+
 <p>We can aggregate them into the following block (or aggregate transaction):</p>
-<pre><code>(in1, in2, in3) -&gt; (out1, out2), (kern1, kern2)
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">(in1, in2, in3) -&gt; (out1, out2), (kern1, kern2)</span>
+</code></pre></div>
+
+
 <p>It is trivially easy to try all possible permutations to recover one of the transactions (where it successfully sums to zero):</p>
-<pre><code>(in1, in2) -&gt; (out1), (kern1)
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">(in1, in2) -&gt; (out1), (kern1)</span>
+</code></pre></div>
+
+
 <p>We also know that everything remaining can be used to reconstruct the other valid transaction:</p>
-<pre><code>(in3) -&gt; (out2), (kern2)
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">(in3) -&gt; (out2), (kern2)</span>
+</code></pre></div>
+
+
 <p>Remember that the kernel excess <code>r*G</code> simply is the public key of the excess value <em>r</em>. To mitigate this we redefine the kernel excess from <code>r*G</code> to <code>(r-kernel_offset)*G</code> and distribute the <em>kernel offset</em> to be included with every transaction kernel. The kernel offset is thus a blinding factor that needs to be added to the excess value to ensure the commitments sum to zero:</p>
-<pre><code>sum(outputs) - sum(inputs) = r*G = (r-kernel_offset)*G + kernel_offset*G
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">sum(outputs) - sum(inputs) = r*G = (r-kernel_offset)*G + kernel_offset*G</span>
+</code></pre></div>
+
+
 <p>or alternatively</p>
-<pre><code>sum(outputs) - sum(inputs) = kernel_excess + kernel_offset*G
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">sum(outputs) - sum(inputs) = kernel_excess + kernel_offset*G</span>
+</code></pre></div>
+
+
 <p>For a commitment <code>r*G + 0*H</code> with the offset <code>a</code>, the transaction is signed with <code>(r-a)</code> and <em>a</em> is published so that <code>r*G</code> can be calculated in order to verify the validity of the transaction. During block construction all kernel offsets are summed to generate a <em>single</em> aggregate kernel offset to cover the whole block. The kernel offset for any individual transaction is then unrecoverable and the subset problem is solved.</p>
-<pre><code>sum(outputs) - sum(inputs) = sum(kernel_excess) + kernel_offset*G
-</code></pre>
-<h4 id="cut-through">Cut-through</h4>
+<div class="codehilite"><pre><span></span><code><span class="err">sum(outputs) - sum(inputs) = sum(kernel_excess) + kernel_offset*G</span>
+</code></pre></div>
+
+
+<h3 id="cut-through">Cut-through</h3>
 <p>Blocks let miners assemble multiple transactions into a single set that's added
 to the chain. In the following block representations, containing 3 transactions,
 we only show inputs and
 outputs of transactions. Inputs reference outputs they spend. An output included
 in a previous block is marked with a lower-case x.</p>
-<pre><code>I1(x1) --- O1
-        |- O2
+<div class="codehilite"><pre><span></span><code><span class="n">I1</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span> <span class="c1">--- O1</span>
+        <span class="o">|-</span> <span class="n">O2</span>
 
-I2(x2) --- O3
-I3(O2) -|
+<span class="n">I2</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span> <span class="c1">--- O3</span>
+<span class="n">I3</span><span class="p">(</span><span class="n">O2</span><span class="p">)</span> <span class="o">-|</span>
 
-I4(O3) --- O4
-        |- O5
-</code></pre>
+<span class="n">I4</span><span class="p">(</span><span class="n">O3</span><span class="p">)</span> <span class="c1">--- O4</span>
+        <span class="o">|-</span> <span class="n">O5</span>
+</code></pre></div>
+
+
 <p>We notice the two following properties:</p>
 <ul>
 <li>Within this block, some outputs are directly spent by following inputs (<em>I3</em>
@@ -1224,10 +1250,12 @@ has been proven (which comes from the <em>transaction kernels</em>) and that the
 not create any coins (other than what's allowed as the mining reward).
 Therefore, matching inputs and outputs can be eliminated, as their contribution to the overall
 sum cancels out. Which leads to the following, much more compact block:</p>
-<pre><code>I1(x1) | O1
-I2(x2) | O4
-       | O5
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">I1(x1) | O1</span>
+<span class="err">I2(x2) | O4</span>
+<span class="err">       | O5</span>
+</code></pre></div>
+
+
 <p>Note that all transaction structure has been eliminated and the order of inputs and
 outputs does not matter anymore. However, the sum of all inputs and outputs is still guaranteed to be zero.</p>
 <p>A block is simply built from:</p>
@@ -1251,7 +1279,7 @@ guarantees:</p>
 <li>All transaction structure has been removed, making it impossible to tell which inputs and outputs match.</li>
 </ul>
 <p>And yet, it all still validates!</p>
-<h4 id="cut-through-all-the-way">Cut-through All The Way</h4>
+<h3 id="cut-through-all-the-way">Cut-through All The Way</h3>
 <p>Going back to the previous example block, outputs <em>x1</em> and <em>x2</em>, spent by <em>I1</em> and
 <em>I2</em>, must have appeared previously in the blockchain. So after the addition of
 this block, those outputs as well as <em>I1</em> and <em>I2</em> can also be removed from the
@@ -1276,7 +1304,7 @@ order of a few gigabytes for a bitcoin-sized blockchain, and
 </ul>
 <p>In addition, the UTXO set cannot be tampered with. Adding or removing even
 one input or output would change the sum of the transactions to be something other than zero.</p>
-<h3 id="conclusion">Conclusion</h3>
+<h2 id="conclusion">Conclusion</h2>
 <p>In this document we covered the basic principles that underlie a Mimblewimble
 blockchain. By using the addition properties of Elliptic Curve Cryptography, we're
 able to build transactions that are completely opaque but can still be properly
@@ -1375,14 +1403,14 @@ amount of blockchain data, allowing for great scaling and fast sync of new peers
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.4a5ba8d6.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "../..",
           features: ["tabs"],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.9b3611bd.min.js"
+            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
